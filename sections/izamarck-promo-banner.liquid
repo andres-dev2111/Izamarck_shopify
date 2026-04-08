@@ -1,0 +1,120 @@
+{%- assign promo_img = section.settings.promo_image -%}
+
+<section class="izamarck-promo">
+  {%- if promo_img != blank -%}
+    <img
+      class="izamarck-promo__img"
+      src="{{ promo_img | image_url: width: 1600 }}"
+      alt="{{ promo_img.alt | escape | default: section.settings.promo_title }}"
+      loading="lazy"
+    >
+  {%- else -%}
+    <img
+      class="izamarck-promo__img"
+      src="https://images.unsplash.com/photo-1700847304964-9fe563059742?w=1600&q=80"
+      alt="{{ section.settings.promo_title }}"
+      loading="lazy"
+    >
+  {%- endif -%}
+
+  <div class="izamarck-promo__overlay"></div>
+
+  {%- comment -%} Giant scrolling text background {%- endcomment -%}
+  <div class="izamarck-promo__ticker-bg">
+    <div class="izamarck-promo__ticker-track" aria-hidden="true">
+      {%- for i in (1..8) -%}
+        <span class="izamarck-promo__ticker-text">IZAMARCK</span>
+      {%- endfor -%}
+      {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
+      {%- for i in (1..8) -%}
+        <span class="izamarck-promo__ticker-text">IZAMARCK</span>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="izamarck-promo__content">
+    {%- if section.settings.promo_eyebrow != blank -%}
+      <p class="izamarck-promo__eyebrow">{{ section.settings.promo_eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.promo_title != blank -%}
+      <h2 class="izamarck-promo__title">{{ section.settings.promo_title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.promo_subtitle != blank -%}
+      <p class="izamarck-promo__subtitle">{{ section.settings.promo_subtitle }}</p>
+    {%- endif -%}
+
+    <div class="izamarck-promo__actions">
+      {%- if section.settings.btn1_label != blank -%}
+        <a href="{{ section.settings.btn1_link }}" class="izamarck-btn-primary">
+          {{ section.settings.btn1_label }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.btn2_label != blank -%}
+        <a href="{{ section.settings.btn2_link }}" class="izamarck-btn-ghost">
+          {{ section.settings.btn2_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IZAMARCK — Promo Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "promo_image",
+      "label": "Imagen de fondo"
+    },
+    {
+      "type": "text",
+      "id": "promo_eyebrow",
+      "label": "Texto pequeño",
+      "default": "Nueva Temporada"
+    },
+    {
+      "type": "text",
+      "id": "promo_title",
+      "label": "Título",
+      "default": "Descubre lo Nuevo"
+    },
+    {
+      "type": "textarea",
+      "id": "promo_subtitle",
+      "label": "Subtítulo",
+      "default": "Prendas diseñadas para quienes saben lo que quieren. Encuentra tu próximo look favorito."
+    },
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Botón 1 — texto",
+      "default": "Explorar Colección"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Botón 1 — enlace"
+    },
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Botón 2 — texto",
+      "default": "Ver Lookbook"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Botón 2 — enlace"
+    }
+  ],
+  "presets": [
+    {
+      "name": "IZAMARCK — Promo Banner"
+    }
+  ]
+}
+{% endschema %}

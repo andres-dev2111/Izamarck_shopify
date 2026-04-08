@@ -1,0 +1,222 @@
+<script>
+  (function() {
+    function initLookbook() {
+      var btns  = document.querySelectorAll('.izamarck-lookbook__cat-btn');
+      var items = document.querySelectorAll('.izamarck-lookbook__item[data-cat]');
+      if (!btns.length) return;
+
+      btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var cat = this.dataset.cat;
+
+          btns.forEach(function(b) { b.classList.remove('izamarck-lookbook__cat-btn--active'); });
+          this.classList.add('izamarck-lookbook__cat-btn--active');
+
+          items.forEach(function(item) {
+            if (cat === 'Todos' || item.dataset.cat === cat) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }.bind(btn));
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLookbook);
+    } else {
+      initLookbook();
+    }
+  })();
+</script>
+
+<section class="izamarck-lookbook">
+  <div class="izamarck-lookbook__header">
+    <h2 class="izamarck-lookbook__title">{{ section.settings.title | default: 'Lookbook' }}</h2>
+    <a href="{{ section.settings.view_all_link | default: '#' }}" class="izamarck-btn-ghost">
+      {{ section.settings.view_all_label | default: 'Ver todo' }}
+    </a>
+  </div>
+
+  {%- comment -%} Category filter buttons {%- endcomment -%}
+  <div class="izamarck-lookbook__cats" role="group" aria-label="Filtrar por categoría">
+    {%- assign cats = 'Todos,Trendy,Casual,Denim,Viral,Party,Activo,Cozy,Leather Look' | split: ',' -%}
+    {%- for cat in cats -%}
+      <button
+        class="izamarck-lookbook__cat-btn{% if forloop.first %} izamarck-lookbook__cat-btn--active{% endif %}"
+        data-cat="{{ cat }}"
+        type="button"
+      >
+        {{ cat }}
+      </button>
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Lookbook grid from blocks {%- endcomment -%}
+  <div class="izamarck-lookbook__grid">
+    {%- for block in section.blocks -%}
+      {%- assign bimg = block.settings.image -%}
+      <div
+        class="izamarck-lookbook__item{% if block.settings.tall %} izamarck-lookbook__item--tall{% endif %}"
+        data-cat="{{ block.settings.category | default: 'Todos' }}"
+        {{ block.shopify_attributes }}
+      >
+        {%- if bimg != blank -%}
+          <img
+            class="izamarck-lookbook__item-img"
+            src="{{ bimg | image_url: width: 700 }}"
+            alt="{{ bimg.alt | escape | default: block.settings.look_title }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            class="izamarck-lookbook__item-img"
+            src="https://images.unsplash.com/photo-1620854157835-e18317ee11ca?w=700&q=80"
+            alt="{{ block.settings.look_title }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="izamarck-lookbook__item-overlay"></div>
+
+        {%- if block.settings.tag != blank -%}
+          <span class="izamarck-lookbook__item-tag">{{ block.settings.tag }}</span>
+        {%- endif -%}
+
+        {%- if block.settings.handle != blank -%}
+          <span class="izamarck-lookbook__item-handle">{{ block.settings.handle }}</span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+
+    {%- comment -%} Fallback demo items if no blocks configured {%- endcomment -%}
+    {%- if section.blocks.size == 0 -%}
+      {%- assign demo_images = 'https://images.unsplash.com/photo-1620854157835-e18317ee11ca?w=700&q=80,https://images.unsplash.com/photo-1724360375156-6d8507985a1e?w=700&q=80,https://images.unsplash.com/photo-1761526135375-3ef857cbd358?w=700&q=80,https://images.unsplash.com/photo-1699394623001-e45c44be255c?w=700&q=80,https://images.unsplash.com/photo-1717198104996-6b6eed663457?w=700&q=80,https://images.unsplash.com/photo-1765915878260-fb7e4039309a?w=700&q=80' | split: ',' -%}
+      {%- assign demo_tags   = 'TRENDY,VIRAL,CASUAL,PARTY,COZY,TRENDY' | split: ',' -%}
+      {%- assign demo_handles = '@izamarck.oficial,@izamarck_looks,@izamarck.moda,@izamarck.style,@izamarck.cozy,@izamarck.men' | split: ',' -%}
+      {%- assign demo_cats   = 'Trendy,Viral,Casual,Party,Cozy,Trendy' | split: ',' -%}
+      {%- assign demo_tall   = 'false,true,false,false,true,false' | split: ',' -%}
+
+      {%- for img_url in demo_images -%}
+        <div
+          class="izamarck-lookbook__item{% if demo_tall[forloop.index0] == 'true' %} izamarck-lookbook__item--tall{% endif %}"
+          data-cat="{{ demo_cats[forloop.index0] }}"
+        >
+          <img
+            class="izamarck-lookbook__item-img"
+            src="{{ img_url }}"
+            alt="Look {{ forloop.index }}"
+            loading="lazy"
+          >
+          <div class="izamarck-lookbook__item-overlay"></div>
+          <span class="izamarck-lookbook__item-tag">{{ demo_tags[forloop.index0] }}</span>
+          <span class="izamarck-lookbook__item-handle">{{ demo_handles[forloop.index0] }}</span>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <div class="izamarck-lookbook__cta">
+    <a href="{{ section.settings.view_all_link | default: '#' }}" class="izamarck-btn-primary">
+      {{ section.settings.load_more_label | default: 'Ver más looks' }}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IZAMARCK — Lookbook",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "look",
+      "name": "Look",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Categoría",
+          "options": [
+            { "value": "Trendy",       "label": "Trendy" },
+            { "value": "Casual",       "label": "Casual" },
+            { "value": "Denim",        "label": "Denim" },
+            { "value": "Viral",        "label": "Viral" },
+            { "value": "Party",        "label": "Party" },
+            { "value": "Activo",       "label": "Activo" },
+            { "value": "Cozy",         "label": "Cozy" },
+            { "value": "Leather Look", "label": "Leather Look" }
+          ],
+          "default": "Trendy"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Etiqueta (ej: TRENDY)",
+          "default": "TRENDY"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Handle Instagram",
+          "default": "@izamarck.oficial"
+        },
+        {
+          "type": "text",
+          "id": "look_title",
+          "label": "Título del look (para alt)"
+        },
+        {
+          "type": "checkbox",
+          "id": "tall",
+          "label": "Card alta (doble altura)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Lookbook"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Texto enlace 'Ver todo'",
+      "default": "Ver todo"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "Enlace 'Ver todo'"
+    },
+    {
+      "type": "text",
+      "id": "load_more_label",
+      "label": "Texto botón inferior",
+      "default": "Ver más looks"
+    }
+  ],
+  "presets": [
+    {
+      "name": "IZAMARCK — Lookbook",
+      "blocks": {
+        "look_1": { "type": "look", "settings": { "tag": "TRENDY", "category": "Trendy", "tall": false } },
+        "look_2": { "type": "look", "settings": { "tag": "VIRAL",  "category": "Viral",  "tall": true  } },
+        "look_3": { "type": "look", "settings": { "tag": "CASUAL", "category": "Casual", "tall": false } },
+        "look_4": { "type": "look", "settings": { "tag": "PARTY",  "category": "Party",  "tall": false } },
+        "look_5": { "type": "look", "settings": { "tag": "COZY",   "category": "Cozy",   "tall": true  } },
+        "look_6": { "type": "look", "settings": { "tag": "TRENDY", "category": "Trendy", "tall": false } }
+      },
+      "block_order": ["look_1","look_2","look_3","look_4","look_5","look_6"]
+    }
+  ]
+}
+{% endschema %}

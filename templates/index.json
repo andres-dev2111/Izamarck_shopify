@@ -9,84 +9,44 @@
  */
  {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+    "izamarck_hero": {
+      "type": "izamarck-hero",
+      "name": "IZAMARCK Hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "eyebrow": "Colección 2026",
+        "hero_title": "Más\nVendidos",
+        "hero_subtitle": "Descubre los más vendidos que han conquistado a nuestros clientes por su perfecta combinación de funcionalidad y estilo.",
+        "cta_primary_label": "Comprar Ahora",
+        "cta_primary_link": "/collections/all",
+        "cta_secondary_label": "Ver Colección",
+        "cta_secondary_link": "/collections",
+        "mini_cat_1": "Hombre",
+        "mini_title_1": "Colección Urban",
+        "mini_link_1": "/collections/hombre",
+        "mini_cat_2": "Mujer",
+        "mini_title_2": "Estilo Casual",
+        "mini_link_2": "/collections/mujer"
       }
     },
-    "product_list_fa6P9H": {
+    "izamarck_categories": {
+      "type": "izamarck-categories",
+      "name": "IZAMARCK Categorías",
+      "settings": {
+        "top_name_1": "Vestidos y Monos",
+        "top_link_1": "/collections/vestidos",
+        "top_name_2": "Pantalones",
+        "top_link_2": "/collections/pantalones",
+        "grid_name_1": "Vestidos",
+        "grid_link_1": "/collections/vestidos",
+        "grid_name_2": "Jeans",
+        "grid_link_2": "/collections/jeans",
+        "grid_name_3": "Tops y Bodies",
+        "grid_link_3": "/collections/tops",
+        "grid_name_4": "Conjuntos",
+        "grid_link_4": "/collections/conjuntos"
+      }
+    },
+    "product_list_main": {
       "type": "product-list",
       "blocks": {
         "static-header": {
@@ -123,11 +83,11 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_list_text_YFtzcL": {
+            "product_list_text": {
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "text": "<h3>Más Vendidos</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -149,11 +109,11 @@
               },
               "blocks": {}
             },
-            "product_list_button_MWeP9V": {
+            "product_list_button": {
               "type": "_product-list-button",
               "name": "t:names.product_list_button",
               "settings": {
-                "label": "View all",
+                "label": "Ver todo",
                 "open_in_new_tab": false,
                 "style_class": "link",
                 "width": "fit-content",
@@ -164,10 +124,7 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+          "block_order": ["product_list_text", "product_list_button"]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -187,7 +144,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_card_gallery_677WP3": {
+            "product_card_gallery": {
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
@@ -203,7 +160,7 @@
               },
               "blocks": {}
             },
-            "product_title_YXxMTj": {
+            "product_title": {
               "type": "product-title",
               "name": "t:names.product_title",
               "settings": {
@@ -228,7 +185,7 @@
               },
               "blocks": {}
             },
-            "price_JQzVV4": {
+            "price": {
               "type": "price",
               "name": "t:names.product_price",
               "settings": {
@@ -252,14 +209,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+          "block_order": ["product_card_gallery", "product_title", "price"]
         }
       },
-      "name": "t:names.featured_collection",
+      "name": "Más Vendidos",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
@@ -279,10 +232,69 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "izamarck_promo": {
+      "type": "izamarck-promo-banner",
+      "name": "IZAMARCK Promo Banner",
+      "settings": {
+        "promo_eyebrow": "Nueva Temporada",
+        "promo_title": "Descubre lo Nuevo",
+        "promo_subtitle": "Prendas diseñadas para quienes saben lo que quieren. Encuentra tu próximo look favorito.",
+        "btn1_label": "Explorar Colección",
+        "btn1_link": "/collections/all",
+        "btn2_label": "Ver Lookbook",
+        "btn2_link": "/pages/lookbook"
+      }
+    },
+    "izamarck_lookbook": {
+      "type": "izamarck-lookbook",
+      "name": "IZAMARCK Lookbook",
+      "blocks": {
+        "look_1": { "type": "look", "settings": { "tag": "TRENDY", "category": "Trendy", "tall": false, "handle": "@izamarck.oficial" } },
+        "look_2": { "type": "look", "settings": { "tag": "VIRAL",  "category": "Viral",  "tall": true,  "handle": "@izamarck_looks" } },
+        "look_3": { "type": "look", "settings": { "tag": "CASUAL", "category": "Casual", "tall": false, "handle": "@izamarck.moda" } },
+        "look_4": { "type": "look", "settings": { "tag": "PARTY",  "category": "Party",  "tall": false, "handle": "@izamarck.style" } },
+        "look_5": { "type": "look", "settings": { "tag": "COZY",   "category": "Cozy",   "tall": true,  "handle": "@izamarck.cozy" } },
+        "look_6": { "type": "look", "settings": { "tag": "TRENDY", "category": "Trendy", "tall": false, "handle": "@izamarck.men" } }
+      },
+      "block_order": ["look_1","look_2","look_3","look_4","look_5","look_6"],
+      "settings": {
+        "title": "Lookbook",
+        "view_all_label": "Ver todo",
+        "load_more_label": "Ver más looks"
+      }
+    },
+    "izamarck_footer_section": {
+      "type": "izamarck-footer",
+      "name": "IZAMARCK Footer",
+      "settings": {
+        "logo_text": "IZAMARCK",
+        "tagline": "Moda con identidad",
+        "col1_title": "Sobre la Marca",
+        "col1_link1_label": "Sobre Nosotros",
+        "col1_link2_label": "Nuestra Historia",
+        "col1_link3_label": "Cultura IZAMARCK",
+        "col1_link4_label": "Trabaja con Nosotros",
+        "col1_link5_label": "La Vida en IZAMARCK",
+        "col2_title": "Ayuda",
+        "col2_link1_label": "Cambios, Devoluciones y Garantías",
+        "col2_link2_label": "Términos y Condiciones",
+        "col2_link3_label": "Política de Envíos",
+        "col2_link4_label": "Preguntas Frecuentes",
+        "col2_link5_label": "Escríbenos",
+        "col3_title": "Contacto",
+        "contact_info": "NIT: 000.000.000-0\nWhatsApp: 300 000 00 00\nPBX: 01 8000 00 00 00\nMedellín, Colombia\ncontacto@izamarck.com",
+        "newsletter_text": "Suscríbete y recibe un 10% en tu primera compra.",
+        "copyright": "© 2026 IZAMARCK®. Todos los derechos reservados."
+      }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "izamarck_hero",
+    "izamarck_categories",
+    "product_list_main",
+    "izamarck_promo",
+    "izamarck_lookbook",
+    "izamarck_footer_section"
   ]
 }

@@ -1,0 +1,192 @@
+<div class="izamarck-categories">
+  {%- comment -%} Top 2-column editorial panels {%- endcomment -%}
+  <div class="izamarck-categories__top-grid">
+    {%- for i in (1..2) -%}
+      {%- liquid
+        assign img_key  = 'top_image_' | append: i
+        assign name_key = 'top_name_'  | append: i
+        assign link_key = 'top_link_'  | append: i
+        assign img      = section.settings[img_key]
+        assign name     = section.settings[name_key]
+        assign link     = section.settings[link_key] | default: '#'
+      -%}
+      <a href="{{ link }}" class="izamarck-cat-panel" style="text-decoration:none;">
+        {%- if img != blank -%}
+          <img
+            src="{{ img | image_url: width: 900 }}"
+            alt="{{ img.alt | escape | default: name }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {%- assign fallbacks = 'https://images.unsplash.com/photo-1767631338127-8cd80ee2f9df?w=900&q=80,https://images.unsplash.com/photo-1716004359569-052b4d8b3713?w=900&q=80' | split: ',' -%}
+          <img
+            src="{{ fallbacks[forloop.index0] }}"
+            alt="{{ name }}"
+            loading="lazy"
+            style="width:100%;height:100%;object-fit:cover;object-position:top;"
+          >
+        {%- endif -%}
+        <div class="izamarck-cat-panel__overlay"></div>
+        <div class="izamarck-cat-panel__footer">
+          <span class="izamarck-cat-panel__name">{{ name | default: 'Categoría' }}</span>
+          <span class="izamarck-cat-panel__link">Ver Todo</span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Bottom 4-column grid {%- endcomment -%}
+  <div class="izamarck-categories__bottom-grid">
+    {%- for i in (1..4) -%}
+      {%- liquid
+        assign img_key  = 'grid_image_' | append: i
+        assign name_key = 'grid_name_'  | append: i
+        assign link_key = 'grid_link_'  | append: i
+        assign img      = section.settings[img_key]
+        assign name     = section.settings[name_key]
+        assign link     = section.settings[link_key] | default: '#'
+      -%}
+      <a href="{{ link }}" class="izamarck-cat-panel izamarck-cat-panel--small" style="text-decoration:none;">
+        {%- if img != blank -%}
+          <img
+            src="{{ img | image_url: width: 600 }}"
+            alt="{{ img.alt | escape | default: name }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {%- assign grid_fallbacks = 'https://images.unsplash.com/photo-1704775989614-8435994e4e97?w=600&q=80,https://images.unsplash.com/photo-1750857740109-de17aae57783?w=600&q=80,https://images.unsplash.com/photo-1764347120228-947f575f9c82?w=600&q=80,https://images.unsplash.com/photo-1763971922558-0f3bd55abd60?w=600&q=80' | split: ',' -%}
+          <img
+            src="{{ grid_fallbacks[forloop.index0] }}"
+            alt="{{ name }}"
+            loading="lazy"
+            style="width:100%;height:100%;object-fit:cover;object-position:top;"
+          >
+        {%- endif -%}
+        <div class="izamarck-cat-panel__overlay"></div>
+        <div class="izamarck-cat-panel__footer">
+          <span class="izamarck-cat-panel__name">{{ name | default: 'Categoría' }}</span>
+          <span class="izamarck-cat-panel__link">Ver Todo</span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "IZAMARCK — Categorías",
+  "tag": "section",
+  "class": "izamarck-categories-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Paneles superiores (2 columnas)"
+    },
+    {
+      "type": "image_picker",
+      "id": "top_image_1",
+      "label": "Panel 1 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "top_name_1",
+      "label": "Panel 1 — nombre",
+      "default": "Vestidos y Monos"
+    },
+    {
+      "type": "url",
+      "id": "top_link_1",
+      "label": "Panel 1 — enlace"
+    },
+    {
+      "type": "image_picker",
+      "id": "top_image_2",
+      "label": "Panel 2 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "top_name_2",
+      "label": "Panel 2 — nombre",
+      "default": "Pantalones"
+    },
+    {
+      "type": "url",
+      "id": "top_link_2",
+      "label": "Panel 2 — enlace"
+    },
+    {
+      "type": "header",
+      "content": "Cuadrícula inferior (4 columnas)"
+    },
+    {
+      "type": "image_picker",
+      "id": "grid_image_1",
+      "label": "Celda 1 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "grid_name_1",
+      "label": "Celda 1 — nombre",
+      "default": "Vestidos"
+    },
+    {
+      "type": "url",
+      "id": "grid_link_1",
+      "label": "Celda 1 — enlace"
+    },
+    {
+      "type": "image_picker",
+      "id": "grid_image_2",
+      "label": "Celda 2 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "grid_name_2",
+      "label": "Celda 2 — nombre",
+      "default": "Jeans"
+    },
+    {
+      "type": "url",
+      "id": "grid_link_2",
+      "label": "Celda 2 — enlace"
+    },
+    {
+      "type": "image_picker",
+      "id": "grid_image_3",
+      "label": "Celda 3 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "grid_name_3",
+      "label": "Celda 3 — nombre",
+      "default": "Tops y Bodies"
+    },
+    {
+      "type": "url",
+      "id": "grid_link_3",
+      "label": "Celda 3 — enlace"
+    },
+    {
+      "type": "image_picker",
+      "id": "grid_image_4",
+      "label": "Celda 4 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "grid_name_4",
+      "label": "Celda 4 — nombre",
+      "default": "Conjuntos"
+    },
+    {
+      "type": "url",
+      "id": "grid_link_4",
+      "label": "Celda 4 — enlace"
+    }
+  ],
+  "presets": [
+    {
+      "name": "IZAMARCK — Categorías"
+    }
+  ]
+}
+{% endschema %}

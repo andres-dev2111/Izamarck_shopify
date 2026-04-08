@@ -1,0 +1,218 @@
+<div class="izamarck-hero">
+  {%- liquid
+    assign hero_img   = section.settings.hero_image
+    assign mini1_img  = section.settings.mini_image_1
+    assign mini2_img  = section.settings.mini_image_2
+  -%}
+
+  {%- comment -%} Main hero banner {%- endcomment -%}
+  <div class="izamarck-hero__main">
+    {%- if hero_img != blank -%}
+      <img
+        src="{{ hero_img | image_url: width: 1400 }}"
+        alt="{{ hero_img.alt | escape | default: section.settings.hero_title }}"
+        width="{{ hero_img.width }}"
+        height="{{ hero_img.height }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {%- else -%}
+      <img
+        src="https://images.unsplash.com/photo-1769305171851-897e01aa095c?w=1400&q=80"
+        alt="{{ section.settings.hero_title }}"
+        loading="eager"
+        style="width:100%;height:100%;object-fit:cover;object-position:top;"
+      >
+    {%- endif -%}
+
+    <div class="izamarck-hero__main-overlay"></div>
+
+    <div class="izamarck-hero__main-content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="izamarck-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.hero_title != blank -%}
+        <h1 class="izamarck-hero__title">{{ section.settings.hero_title }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.hero_subtitle != blank -%}
+        <p class="izamarck-hero__subtitle">{{ section.settings.hero_subtitle }}</p>
+      {%- endif -%}
+
+      <div class="izamarck-hero__actions">
+        {%- if section.settings.cta_primary_label != blank -%}
+          <a href="{{ section.settings.cta_primary_link }}" class="izamarck-btn-primary">
+            {{ section.settings.cta_primary_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.cta_secondary_label != blank -%}
+          <a href="{{ section.settings.cta_secondary_link }}" class="izamarck-btn-ghost">
+            {{ section.settings.cta_secondary_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Two mini banners {%- endcomment -%}
+  <div class="izamarck-hero__mini-grid">
+    <a href="{{ section.settings.mini_link_1 | default: '#' }}" class="izamarck-hero__mini-card" style="text-decoration:none;">
+      {%- if mini1_img != blank -%}
+        <img
+          src="{{ mini1_img | image_url: width: 700 }}"
+          alt="{{ mini1_img.alt | escape | default: section.settings.mini_cat_1 }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="https://images.unsplash.com/photo-1762052508120-2607918d663f?w=700&q=80"
+          alt="{{ section.settings.mini_cat_1 }}"
+          loading="lazy"
+          style="width:100%;height:100%;object-fit:cover;"
+        >
+      {%- endif -%}
+      <div class="izamarck-hero__mini-overlay"></div>
+      <div class="izamarck-hero__mini-content">
+        <span class="izamarck-hero__mini-category">{{ section.settings.mini_cat_1 | default: 'Hombre' }}</span>
+        <div class="izamarck-hero__mini-title">{{ section.settings.mini_title_1 | default: 'Colección Urban' }}</div>
+        <span class="izamarck-hero__mini-cta">Ver todo →</span>
+      </div>
+    </a>
+
+    <a href="{{ section.settings.mini_link_2 | default: '#' }}" class="izamarck-hero__mini-card" style="text-decoration:none;">
+      {%- if mini2_img != blank -%}
+        <img
+          src="{{ mini2_img | image_url: width: 700 }}"
+          alt="{{ mini2_img.alt | escape | default: section.settings.mini_cat_2 }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="https://images.unsplash.com/photo-1686682308777-380e9e065b6f?w=700&q=80"
+          alt="{{ section.settings.mini_cat_2 }}"
+          loading="lazy"
+          style="width:100%;height:100%;object-fit:cover;"
+        >
+      {%- endif -%}
+      <div class="izamarck-hero__mini-overlay"></div>
+      <div class="izamarck-hero__mini-content">
+        <span class="izamarck-hero__mini-category">{{ section.settings.mini_cat_2 | default: 'Mujer' }}</span>
+        <div class="izamarck-hero__mini-title">{{ section.settings.mini_title_2 | default: 'Estilo Casual' }}</div>
+        <span class="izamarck-hero__mini-cta">Ver todo →</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "IZAMARCK — Hero Banner",
+  "tag": "section",
+  "class": "izamarck-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Principal"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagen principal"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño (arriba del título)",
+      "default": "Colección 2026"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Título principal",
+      "default": "Más\nVendidos"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Subtítulo",
+      "default": "Descubre los más vendidos que han conquistado a nuestros clientes por su perfecta combinación de funcionalidad y estilo."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Botón primario — texto",
+      "default": "Comprar Ahora"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Botón primario — enlace"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Botón secundario — texto",
+      "default": "Ver Colección"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Botón secundario — enlace"
+    },
+    {
+      "type": "header",
+      "content": "Mini Banners"
+    },
+    {
+      "type": "image_picker",
+      "id": "mini_image_1",
+      "label": "Mini banner 1 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "mini_cat_1",
+      "label": "Mini banner 1 — categoría",
+      "default": "Hombre"
+    },
+    {
+      "type": "text",
+      "id": "mini_title_1",
+      "label": "Mini banner 1 — título",
+      "default": "Colección Urban"
+    },
+    {
+      "type": "url",
+      "id": "mini_link_1",
+      "label": "Mini banner 1 — enlace"
+    },
+    {
+      "type": "image_picker",
+      "id": "mini_image_2",
+      "label": "Mini banner 2 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "mini_cat_2",
+      "label": "Mini banner 2 — categoría",
+      "default": "Mujer"
+    },
+    {
+      "type": "text",
+      "id": "mini_title_2",
+      "label": "Mini banner 2 — título",
+      "default": "Estilo Casual"
+    },
+    {
+      "type": "url",
+      "id": "mini_link_2",
+      "label": "Mini banner 2 — enlace"
+    }
+  ],
+  "presets": [
+    {
+      "name": "IZAMARCK — Hero Banner"
+    }
+  ]
+}
+{% endschema %}
