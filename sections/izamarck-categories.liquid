@@ -1,76 +1,158 @@
 <div class="izamarck-categories">
-  {%- comment -%} Top 2-column editorial panels {%- endcomment -%}
-  <div class="izamarck-categories__top-grid">
-    {%- for i in (1..2) -%}
+  {%- comment -%} 4-column editorial grid (v2: 2 Hombre + 2 Mujer, single row) {%- endcomment -%}
+  <div class="izamarck-cat-grid-v2">
+    {%- for i in (1..4) -%}
       {%- liquid
-        assign img_key  = 'top_image_' | append: i
-        assign name_key = 'top_name_'  | append: i
-        assign link_key = 'top_link_'  | append: i
-        assign img      = section.settings[img_key]
-        assign name     = section.settings[name_key]
-        assign link     = section.settings[link_key] | default: '#'
+        assign img_key    = 'item_image_'  | append: i
+        assign name_key   = 'item_name_'   | append: i
+        assign label_key  = 'item_label_'  | append: i
+        assign sub_key    = 'item_sub_'    | append: i
+        assign link_key   = 'item_link_'   | append: i
+        assign img        = section.settings[img_key]
+        assign name       = section.settings[name_key]
+        assign label      = section.settings[label_key]
+        assign sub        = section.settings[sub_key]
+        assign link       = section.settings[link_key] | default: '#'
       -%}
-      <a href="{{ link }}" class="izamarck-cat-panel" style="text-decoration:none;">
+      <a href="{{ link }}" class="izamarck-cat-v2" style="text-decoration:none;">
         {%- if img != blank -%}
           <img
-            src="{{ img | image_url: width: 900 }}"
+            src="{{ img | image_url: width: 700 }}"
             alt="{{ img.alt | escape | default: name }}"
             loading="lazy"
+            class="izamarck-cat-v2__img"
           >
         {%- else -%}
-          {%- assign fallbacks = 'https://images.unsplash.com/photo-1767631338127-8cd80ee2f9df?w=900&q=80,https://images.unsplash.com/photo-1716004359569-052b4d8b3713?w=900&q=80' | split: ',' -%}
+          {%- assign fallbacks = 'https://images.unsplash.com/photo-1633756887168-44c79bddf8b3?w=700&q=80,https://images.unsplash.com/photo-1704775989614-8435994e4e97?w=700&q=80,https://images.unsplash.com/photo-1762052508120-2607918d663f?w=700&q=80,https://images.unsplash.com/photo-1763971922558-0f3bd55abd60?w=700&q=80' | split: ',' -%}
           <img
             src="{{ fallbacks[forloop.index0] }}"
             alt="{{ name }}"
             loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;object-position:top;"
+            class="izamarck-cat-v2__img"
           >
         {%- endif -%}
-        <div class="izamarck-cat-panel__overlay"></div>
-        <div class="izamarck-cat-panel__footer">
-          <span class="izamarck-cat-panel__name">{{ name | default: 'Categoría' }}</span>
-          <span class="izamarck-cat-panel__link">Ver Todo</span>
-        </div>
-      </a>
-    {%- endfor -%}
-  </div>
 
-  {%- comment -%} Bottom 4-column grid {%- endcomment -%}
-  <div class="izamarck-categories__bottom-grid">
-    {%- for i in (1..4) -%}
-      {%- liquid
-        assign img_key  = 'grid_image_' | append: i
-        assign name_key = 'grid_name_'  | append: i
-        assign link_key = 'grid_link_'  | append: i
-        assign img      = section.settings[img_key]
-        assign name     = section.settings[name_key]
-        assign link     = section.settings[link_key] | default: '#'
-      -%}
-      <a href="{{ link }}" class="izamarck-cat-panel izamarck-cat-panel--small" style="text-decoration:none;">
-        {%- if img != blank -%}
-          <img
-            src="{{ img | image_url: width: 600 }}"
-            alt="{{ img.alt | escape | default: name }}"
-            loading="lazy"
-          >
-        {%- else -%}
-          {%- assign grid_fallbacks = 'https://images.unsplash.com/photo-1704775989614-8435994e4e97?w=600&q=80,https://images.unsplash.com/photo-1750857740109-de17aae57783?w=600&q=80,https://images.unsplash.com/photo-1764347120228-947f575f9c82?w=600&q=80,https://images.unsplash.com/photo-1763971922558-0f3bd55abd60?w=600&q=80' | split: ',' -%}
-          <img
-            src="{{ grid_fallbacks[forloop.index0] }}"
-            alt="{{ name }}"
-            loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;object-position:top;"
-          >
+        <div class="izamarck-cat-v2__overlay"></div>
+
+        {%- comment -%} Gender badge top-left {%- endcomment -%}
+        {%- if label != blank -%}
+          <span class="izamarck-cat-v2__badge">{{ label }}</span>
         {%- endif -%}
-        <div class="izamarck-cat-panel__overlay"></div>
-        <div class="izamarck-cat-panel__footer">
-          <span class="izamarck-cat-panel__name">{{ name | default: 'Categoría' }}</span>
-          <span class="izamarck-cat-panel__link">Ver Todo</span>
+
+        {%- comment -%} Bottom info {%- endcomment -%}
+        <div class="izamarck-cat-v2__footer">
+          {%- if sub != blank -%}
+            <p class="izamarck-cat-v2__sub">{{ sub }}</p>
+          {%- endif -%}
+          {%- if name != blank -%}
+            <p class="izamarck-cat-v2__name">{{ name }}</p>
+          {%- endif -%}
+          <span class="izamarck-cat-v2__cta">Ver colección →</span>
         </div>
       </a>
     {%- endfor -%}
   </div>
 </div>
+
+{% stylesheet %}
+  .izamarck-cat-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .izamarck-cat-v2 {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: block;
+    height: clamp(260px, 35vw, 520px);
+  }
+
+  .izamarck-cat-v2__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.7s ease;
+    display: block;
+  }
+
+  .izamarck-cat-v2:hover .izamarck-cat-v2__img {
+    transform: scale(1.05);
+  }
+
+  .izamarck-cat-v2__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.10) 50%, transparent 100%);
+  }
+
+  /* Gender badge top-left */
+  .izamarck-cat-v2__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    background: rgba(0,0,0,0.60);
+    color: #ffffff;
+  }
+
+  .izamarck-cat-v2__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+  }
+
+  .izamarck-cat-v2__sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .izamarck-cat-v2__name {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+
+  .izamarck-cat-v2__cta {
+    display: inline-block;
+    color: #D4A843;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .izamarck-cat-v2:hover .izamarck-cat-v2__cta {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .izamarck-cat-grid-v2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .izamarck-cat-v2 {
+      height: 220px;
+    }
+    .izamarck-cat-v2__cta {
+      opacity: 1;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -78,115 +160,31 @@
   "tag": "section",
   "class": "izamarck-categories-section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Paneles superiores (2 columnas)"
-    },
-    {
-      "type": "image_picker",
-      "id": "top_image_1",
-      "label": "Panel 1 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "top_name_1",
-      "label": "Panel 1 — nombre",
-      "default": "Vestidos y Monos"
-    },
-    {
-      "type": "url",
-      "id": "top_link_1",
-      "label": "Panel 1 — enlace"
-    },
-    {
-      "type": "image_picker",
-      "id": "top_image_2",
-      "label": "Panel 2 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "top_name_2",
-      "label": "Panel 2 — nombre",
-      "default": "Pantalones"
-    },
-    {
-      "type": "url",
-      "id": "top_link_2",
-      "label": "Panel 2 — enlace"
-    },
-    {
-      "type": "header",
-      "content": "Cuadrícula inferior (4 columnas)"
-    },
-    {
-      "type": "image_picker",
-      "id": "grid_image_1",
-      "label": "Celda 1 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "grid_name_1",
-      "label": "Celda 1 — nombre",
-      "default": "Vestidos"
-    },
-    {
-      "type": "url",
-      "id": "grid_link_1",
-      "label": "Celda 1 — enlace"
-    },
-    {
-      "type": "image_picker",
-      "id": "grid_image_2",
-      "label": "Celda 2 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "grid_name_2",
-      "label": "Celda 2 — nombre",
-      "default": "Jeans"
-    },
-    {
-      "type": "url",
-      "id": "grid_link_2",
-      "label": "Celda 2 — enlace"
-    },
-    {
-      "type": "image_picker",
-      "id": "grid_image_3",
-      "label": "Celda 3 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "grid_name_3",
-      "label": "Celda 3 — nombre",
-      "default": "Tops y Bodies"
-    },
-    {
-      "type": "url",
-      "id": "grid_link_3",
-      "label": "Celda 3 — enlace"
-    },
-    {
-      "type": "image_picker",
-      "id": "grid_image_4",
-      "label": "Celda 4 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "grid_name_4",
-      "label": "Celda 4 — nombre",
-      "default": "Conjuntos"
-    },
-    {
-      "type": "url",
-      "id": "grid_link_4",
-      "label": "Celda 4 — enlace"
-    }
+    { "type": "header",       "content": "Item 1 (ej: Camiseta Hombre)" },
+    { "type": "image_picker", "id": "item_image_1",  "label": "Imagen" },
+    { "type": "text",         "id": "item_label_1",  "label": "Badge género",    "default": "Hombre" },
+    { "type": "text",         "id": "item_sub_1",    "label": "Subcategoría",    "default": "BÁSICOS" },
+    { "type": "text",         "id": "item_name_1",   "label": "Nombre producto", "default": "Camiseta Essential" },
+    { "type": "url",          "id": "item_link_1",   "label": "Enlace" },
+    { "type": "header",       "content": "Item 2 (ej: Vestido Mujer)" },
+    { "type": "image_picker", "id": "item_image_2",  "label": "Imagen" },
+    { "type": "text",         "id": "item_label_2",  "label": "Badge género",    "default": "Mujer" },
+    { "type": "text",         "id": "item_sub_2",    "label": "Subcategoría",    "default": "VESTIDOS" },
+    { "type": "text",         "id": "item_name_2",   "label": "Nombre producto", "default": "Vestido Midi Elegante" },
+    { "type": "url",          "id": "item_link_2",   "label": "Enlace" },
+    { "type": "header",       "content": "Item 3 (ej: Hoodie Hombre)" },
+    { "type": "image_picker", "id": "item_image_3",  "label": "Imagen" },
+    { "type": "text",         "id": "item_label_3",  "label": "Badge género",    "default": "Hombre" },
+    { "type": "text",         "id": "item_sub_3",    "label": "Subcategoría",    "default": "BUZOS" },
+    { "type": "text",         "id": "item_name_3",   "label": "Nombre producto", "default": "Hoodie Oversize" },
+    { "type": "url",          "id": "item_link_3",   "label": "Enlace" },
+    { "type": "header",       "content": "Item 4 (ej: Conjunto Mujer)" },
+    { "type": "image_picker", "id": "item_image_4",  "label": "Imagen" },
+    { "type": "text",         "id": "item_label_4",  "label": "Badge género",    "default": "Mujer" },
+    { "type": "text",         "id": "item_sub_4",    "label": "Subcategoría",    "default": "CONJUNTOS" },
+    { "type": "text",         "id": "item_name_4",   "label": "Nombre producto", "default": "Conjunto Satinado" },
+    { "type": "url",          "id": "item_link_4",   "label": "Enlace" }
   ],
-  "presets": [
-    {
-      "name": "IZAMARCK — Categorías"
-    }
-  ]
+  "presets": [{ "name": "IZAMARCK — Categorías" }]
 }
 {% endschema %}

@@ -1,24 +1,18 @@
 <div class="izamarck-hero">
-  {%- liquid
-    assign hero_img   = section.settings.hero_image
-    assign mini1_img  = section.settings.mini_image_1
-    assign mini2_img  = section.settings.mini_image_2
-  -%}
+  {%- assign hero_img = section.settings.hero_image -%}
 
-  {%- comment -%} Main hero banner {%- endcomment -%}
   <div class="izamarck-hero__main">
     {%- if hero_img != blank -%}
       <img
-        src="{{ hero_img | image_url: width: 1400 }}"
+        src="{{ hero_img | image_url: width: 1600 }}"
         alt="{{ hero_img.alt | escape | default: section.settings.hero_title }}"
-        width="{{ hero_img.width }}"
-        height="{{ hero_img.height }}"
         loading="eager"
         fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:top;"
       >
     {%- else -%}
       <img
-        src="https://images.unsplash.com/photo-1769305171851-897e01aa095c?w=1400&q=80"
+        src="https://images.unsplash.com/photo-1769305171851-897e01aa095c?w=1600&q=80"
         alt="{{ section.settings.hero_title }}"
         loading="eager"
         style="width:100%;height:100%;object-fit:cover;object-position:top;"
@@ -40,70 +34,111 @@
         <p class="izamarck-hero__subtitle">{{ section.settings.hero_subtitle }}</p>
       {%- endif -%}
 
+      {%- comment -%} Gender nav buttons — matches new React design {%- endcomment -%}
       <div class="izamarck-hero__actions">
-        {%- if section.settings.cta_primary_label != blank -%}
-          <a href="{{ section.settings.cta_primary_link }}" class="izamarck-btn-primary">
-            {{ section.settings.cta_primary_label }}
+        {%- if section.settings.btn_mujer_label != blank -%}
+          <a href="{{ section.settings.btn_mujer_link | default: '/collections/mujer' }}" class="izamarck-btn-primary">
+            {{ section.settings.btn_mujer_label }}
           </a>
         {%- endif -%}
-        {%- if section.settings.cta_secondary_label != blank -%}
-          <a href="{{ section.settings.cta_secondary_link }}" class="izamarck-btn-ghost">
-            {{ section.settings.cta_secondary_label }}
+        {%- if section.settings.btn_hombre_label != blank -%}
+          <a href="{{ section.settings.btn_hombre_link | default: '/collections/hombre' }}" class="izamarck-hero__btn-outline">
+            {{ section.settings.btn_hombre_label }}
           </a>
         {%- endif -%}
       </div>
     </div>
   </div>
-
-  {%- comment -%} Two mini banners {%- endcomment -%}
-  <div class="izamarck-hero__mini-grid">
-    <a href="{{ section.settings.mini_link_1 | default: '#' }}" class="izamarck-hero__mini-card" style="text-decoration:none;">
-      {%- if mini1_img != blank -%}
-        <img
-          src="{{ mini1_img | image_url: width: 700 }}"
-          alt="{{ mini1_img.alt | escape | default: section.settings.mini_cat_1 }}"
-          loading="lazy"
-        >
-      {%- else -%}
-        <img
-          src="https://images.unsplash.com/photo-1762052508120-2607918d663f?w=700&q=80"
-          alt="{{ section.settings.mini_cat_1 }}"
-          loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;"
-        >
-      {%- endif -%}
-      <div class="izamarck-hero__mini-overlay"></div>
-      <div class="izamarck-hero__mini-content">
-        <span class="izamarck-hero__mini-category">{{ section.settings.mini_cat_1 | default: 'Hombre' }}</span>
-        <div class="izamarck-hero__mini-title">{{ section.settings.mini_title_1 | default: 'Colección Urban' }}</div>
-        <span class="izamarck-hero__mini-cta">Ver todo →</span>
-      </div>
-    </a>
-
-    <a href="{{ section.settings.mini_link_2 | default: '#' }}" class="izamarck-hero__mini-card" style="text-decoration:none;">
-      {%- if mini2_img != blank -%}
-        <img
-          src="{{ mini2_img | image_url: width: 700 }}"
-          alt="{{ mini2_img.alt | escape | default: section.settings.mini_cat_2 }}"
-          loading="lazy"
-        >
-      {%- else -%}
-        <img
-          src="https://images.unsplash.com/photo-1686682308777-380e9e065b6f?w=700&q=80"
-          alt="{{ section.settings.mini_cat_2 }}"
-          loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;"
-        >
-      {%- endif -%}
-      <div class="izamarck-hero__mini-overlay"></div>
-      <div class="izamarck-hero__mini-content">
-        <span class="izamarck-hero__mini-category">{{ section.settings.mini_cat_2 | default: 'Mujer' }}</span>
-        <div class="izamarck-hero__mini-title">{{ section.settings.mini_title_2 | default: 'Estilo Casual' }}</div>
-        <span class="izamarck-hero__mini-cta">Ver todo →</span>
-      </div>
-    </a>
-  </div>
 </div>
+
+{% stylesheet %}
+  /* Hero full-width — no mini banners (new v2 design) */
+  .izamarck-hero__main {
+    position: relative;
+    height: clamp(420px, 60vw, 680px);
+    overflow: hidden;
+  }
+
+  .izamarck-hero__main-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.40) 50%, transparent 100%);
+  }
+
+  .izamarck-hero__main-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 56px;
+    max-width: 680px;
+  }
+
+  .izamarck-hero__eyebrow {
+    color: #D4A843;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .izamarck-hero__title {
+    color: #ffffff;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .izamarck-hero__subtitle {
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 380px;
+    margin-bottom: 32px;
+  }
+
+  .izamarck-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* Outline button for "Hombre" — new in v2 */
+  .izamarck-hero__btn-outline {
+    display: inline-block;
+    color: #ffffff !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 11px 28px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .izamarck-hero__btn-outline:hover {
+    border-color: #D4A843 !important;
+    color: #D4A843 !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .izamarck-hero__main {
+      height: clamp(380px, 70vw, 500px);
+    }
+    .izamarck-hero__main-content {
+      padding: 0 24px;
+      max-width: 100%;
+    }
+    .izamarck-hero__title {
+      font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -111,108 +146,16 @@
   "tag": "section",
   "class": "izamarck-hero-section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Banner Principal"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Imagen principal"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Texto pequeño (arriba del título)",
-      "default": "Colección 2026"
-    },
-    {
-      "type": "text",
-      "id": "hero_title",
-      "label": "Título principal",
-      "default": "Más\nVendidos"
-    },
-    {
-      "type": "textarea",
-      "id": "hero_subtitle",
-      "label": "Subtítulo",
-      "default": "Descubre los más vendidos que han conquistado a nuestros clientes por su perfecta combinación de funcionalidad y estilo."
-    },
-    {
-      "type": "text",
-      "id": "cta_primary_label",
-      "label": "Botón primario — texto",
-      "default": "Comprar Ahora"
-    },
-    {
-      "type": "url",
-      "id": "cta_primary_link",
-      "label": "Botón primario — enlace"
-    },
-    {
-      "type": "text",
-      "id": "cta_secondary_label",
-      "label": "Botón secundario — texto",
-      "default": "Ver Colección"
-    },
-    {
-      "type": "url",
-      "id": "cta_secondary_link",
-      "label": "Botón secundario — enlace"
-    },
-    {
-      "type": "header",
-      "content": "Mini Banners"
-    },
-    {
-      "type": "image_picker",
-      "id": "mini_image_1",
-      "label": "Mini banner 1 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "mini_cat_1",
-      "label": "Mini banner 1 — categoría",
-      "default": "Hombre"
-    },
-    {
-      "type": "text",
-      "id": "mini_title_1",
-      "label": "Mini banner 1 — título",
-      "default": "Colección Urban"
-    },
-    {
-      "type": "url",
-      "id": "mini_link_1",
-      "label": "Mini banner 1 — enlace"
-    },
-    {
-      "type": "image_picker",
-      "id": "mini_image_2",
-      "label": "Mini banner 2 — imagen"
-    },
-    {
-      "type": "text",
-      "id": "mini_cat_2",
-      "label": "Mini banner 2 — categoría",
-      "default": "Mujer"
-    },
-    {
-      "type": "text",
-      "id": "mini_title_2",
-      "label": "Mini banner 2 — título",
-      "default": "Estilo Casual"
-    },
-    {
-      "type": "url",
-      "id": "mini_link_2",
-      "label": "Mini banner 2 — enlace"
-    }
+    { "type": "image_picker", "id": "hero_image",    "label": "Imagen principal" },
+    { "type": "text",         "id": "eyebrow",       "label": "Texto pequeño",      "default": "Colección 2026" },
+    { "type": "text",         "id": "hero_title",    "label": "Título",             "default": "Más\nVendidos" },
+    { "type": "textarea",     "id": "hero_subtitle", "label": "Subtítulo",          "default": "Descubre los más vendidos que han conquistado a nuestros clientes por su perfecta combinación de funcionalidad y estilo." },
+    { "type": "header",       "content": "Botones de género" },
+    { "type": "text", "id": "btn_mujer_label",  "label": "Botón 1 — texto", "default": "Mujer" },
+    { "type": "url",  "id": "btn_mujer_link",   "label": "Botón 1 — enlace" },
+    { "type": "text", "id": "btn_hombre_label", "label": "Botón 2 — texto", "default": "Hombre" },
+    { "type": "url",  "id": "btn_hombre_link",  "label": "Botón 2 — enlace" }
   ],
-  "presets": [
-    {
-      "name": "IZAMARCK — Hero Banner"
-    }
-  ]
+  "presets": [{ "name": "IZAMARCK — Hero Banner" }]
 }
 {% endschema %}

@@ -1739,3 +1739,160 @@ cart-drawer-component,
 .izamarck-hero__title br {
   display: block;
 }
+
+/* ============================================================
+   V2 UPDATES — Hero full-width (no mini banners)
+   ============================================================ */
+
+/* Remove old rounded hero style — v2 is full-bleed */
+.izamarck-hero {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* v2 category grid: remove old 2+4 layout references */
+.izamarck-categories__top-grid,
+.izamarck-categories__bottom-grid {
+  display: none !important;
+}
+
+/* Show v2 grid only */
+.izamarck-cat-grid-v2 {
+  display: grid;
+}
+
+/* ============================================================
+   LOOKBOOK v2 — Add-to-cart feedback button
+   ============================================================ */
+.izamarck-lookbook__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.izamarck-lookbook__add-btn:hover {
+  background: #D4A843;
+  color: #000000;
+}
+
+.izamarck-lookbook__add-btn[data-added] {
+  background: #D4A843 !important;
+  color: #000000 !important;
+}
+
+/* ============================================================
+   PAGINATION — matches v2 ProductsSection
+   ============================================================ */
+.izamarck-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 40px 24px 48px;
+  background: #ffffff;
+}
+
+.izamarck-pagination__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.5);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.izamarck-pagination__btn:hover {
+  color: #000000;
+  border-color: rgba(0,0,0,0.15);
+}
+
+.izamarck-pagination__btn--active {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.izamarck-pagination__btn--nav {
+  color: rgba(0,0,0,0.35);
+}
+
+.izamarck-pagination__btn--nav:disabled,
+.izamarck-pagination__btn--nav[aria-disabled="true"] {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.izamarck-pagination__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: rgba(0,0,0,0.3);
+  font-size: 13px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Shopify native pagination override */
+.pagination__list {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  list-style: none !important;
+  padding: 40px 24px 48px !important;
+  margin: 0 !important;
+  background: #ffffff !important;
+}
+
+.pagination__item a,
+.pagination__item span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  padding: 0 8px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(0,0,0,0.5) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.pagination__item a:hover {
+  color: #000000 !important;
+  border-color: rgba(0,0,0,0.15) !important;
+}
+
+.pagination__item--current span,
+.pagination__item[aria-current="page"] span {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  font-weight: 700 !important;
+}
