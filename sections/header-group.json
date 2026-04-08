@@ -127,6 +127,7 @@
         "divider_width": 0,
         "divider_size": "page-width",
         "border_width": 0,
+        "actions_display_style": "icon",
         "color_scheme_top": "scheme-4",
         "color_scheme_bottom": "scheme-4",
         "color_scheme_transparent": "scheme-6",
@@ -135,9 +136,7 @@
         "enable_transparent_header_product": false,
         "product_color_scheme": "default",
         "enable_transparent_header_collection": false,
-        "collection_color_scheme": "default",
-        "color_scheme": "scheme-4",
-        "actions_display_style": "icon"
+        "collection_color_scheme": "default"
       }
     }
   },
