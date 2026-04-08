@@ -1,0 +1,371 @@
+{%- assign sec = section -%}
+
+<section class="izamarck-tpi" style="background:{{ sec.settings.bg_color | default: '#f7f7f5' }}; padding: 56px 0;">
+  <div class="izamarck-tpi__inner">
+
+    {%- comment -%} Header row {%- endcomment -%}
+    <div class="izamarck-tpi__header">
+      <h2 class="izamarck-tpi__title">{{ sec.settings.title | default: 'Te Puede Interesar' }}</h2>
+      <div class="izamarck-tpi__nav">
+        <a href="{{ sec.settings.view_all_link | default: '/collections/all' }}" class="izamarck-tpi__view-all">
+          Ver Todo
+        </a>
+        <button class="izamarck-tpi__arrow" id="tpi-prev-{{ sec.id }}" aria-label="Anterior" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="izamarck-tpi__arrow" id="tpi-next-{{ sec.id }}" aria-label="Siguiente" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {%- comment -%} Scrollable carousel {%- endcomment -%}
+    <div class="izamarck-tpi__track" id="tpi-track-{{ sec.id }}">
+      {%- if sec.settings.collection != blank -%}
+        {%- assign products = sec.settings.collection.products | limit: 10 -%}
+        {%- for product in products -%}
+          {%- assign first_image = product.featured_image -%}
+          {%- assign on_sale = false -%}
+          {%- if product.compare_at_price > product.price -%}
+            {%- assign on_sale = true -%}
+          {%- endif -%}
+          <a href="{{ product.url }}" class="izamarck-tpi__card" style="text-decoration:none;">
+            <div class="izamarck-tpi__card-img-wrap">
+              {%- if first_image != blank -%}
+                <img
+                  src="{{ first_image | image_url: width: 480 }}"
+                  alt="{{ first_image.alt | escape | default: product.title }}"
+                  loading="lazy"
+                  class="izamarck-tpi__card-img"
+                >
+              {%- else -%}
+                <div class="izamarck-tpi__card-img-placeholder"></div>
+              {%- endif -%}
+              {%- if product.tags contains 'NEW IN' or product.tags contains 'new-in' -%}
+                <span class="izamarck-tpi__badge izamarck-tpi__badge--new">NEW IN</span>
+              {%- elsif on_sale -%}
+                <span class="izamarck-tpi__badge izamarck-tpi__badge--sale">SALE</span>
+              {%- elsif product.tags contains 'PROMO' -%}
+                <span class="izamarck-tpi__badge izamarck-tpi__badge--promo">PROMO</span>
+              {%- endif -%}
+              <button class="izamarck-tpi__wishlist" aria-label="Guardar" type="button" onclick="event.preventDefault(); this.classList.toggle('izamarck-tpi__wishlist--active');">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </button>
+            </div>
+            <div class="izamarck-tpi__card-info">
+              <p class="izamarck-tpi__card-name">{{ product.title }}</p>
+              <div class="izamarck-tpi__card-prices">
+                {%- if on_sale -%}
+                  <span class="izamarck-tpi__price izamarck-tpi__price--sale">{{ product.price | money }}</span>
+                  <span class="izamarck-tpi__price izamarck-tpi__price--original">{{ product.compare_at_price | money }}</span>
+                {%- else -%}
+                  <span class="izamarck-tpi__price">{{ product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Demo fallback cards {%- endcomment -%}
+        {%- assign demo_names  = 'Jeans Baggy Barrel,Blazer Oversize,Conjunto Satinado,Top Crop,Vestido Midi,Pantalón Wide Leg' | split: ',' -%}
+        {%- assign demo_prices = '119900,189900,135900,79900,169900,109900'   | split: ',' -%}
+        {%- assign demo_orig   = '149900,,,,,'                                | split: ',' -%}
+        {%- assign demo_tags   = 'PROMO,NEW IN,NEW IN,SALE,NEW IN,'           | split: ',' -%}
+        {%- assign demo_imgs   = 'https://images.unsplash.com/photo-1750857740109-de17aae57783?w=480&q=80,https://images.unsplash.com/photo-1716004359569-052b4d8b3713?w=480&q=80,https://images.unsplash.com/photo-1763971922558-0f3bd55abd60?w=480&q=80,https://images.unsplash.com/photo-1764347120228-947f575f9c82?w=480&q=80,https://images.unsplash.com/photo-1704775989614-8435994e4e97?w=480&q=80,https://images.unsplash.com/photo-1767631338127-8cd80ee2f9df?w=480&q=80' | split: ',' -%}
+
+        {%- for name in demo_names -%}
+          <div class="izamarck-tpi__card">
+            <div class="izamarck-tpi__card-img-wrap">
+              <img
+                src="{{ demo_imgs[forloop.index0] }}"
+                alt="{{ name }}"
+                loading="lazy"
+                class="izamarck-tpi__card-img"
+              >
+              {%- assign tag = demo_tags[forloop.index0] | strip -%}
+              {%- if tag != '' -%}
+                <span class="izamarck-tpi__badge izamarck-tpi__badge--{{ tag | downcase | replace: ' ', '-' }}">{{ tag }}</span>
+              {%- endif -%}
+              <button class="izamarck-tpi__wishlist" aria-label="Guardar" type="button" onclick="this.classList.toggle('izamarck-tpi__wishlist--active');">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </button>
+            </div>
+            <div class="izamarck-tpi__card-info">
+              <p class="izamarck-tpi__card-name">{{ name }}</p>
+              <div class="izamarck-tpi__card-prices">
+                {%- assign orig = demo_orig[forloop.index0] | strip -%}
+                {%- if orig != '' -%}
+                  <span class="izamarck-tpi__price izamarck-tpi__price--sale">${{ demo_prices[forloop.index0] | strip | split: '' | reverse | join: '' | split: '000' | join: '.' | split: '' | reverse | join: '' }}</span>
+                  <span class="izamarck-tpi__price izamarck-tpi__price--original">${{ orig | split: '' | reverse | join: '' | split: '000' | join: '.' | split: '' | reverse | join: '' }}</span>
+                {%- else -%}
+                  <span class="izamarck-tpi__price">${{ demo_prices[forloop.index0] | strip }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var trackId = 'tpi-track-{{ sec.id }}';
+  var prevId  = 'tpi-prev-{{ sec.id }}';
+  var nextId  = 'tpi-next-{{ sec.id }}';
+
+  function init() {
+    var track = document.getElementById(trackId);
+    var prev  = document.getElementById(prevId);
+    var next  = document.getElementById(nextId);
+    if (!track || !prev || !next) return;
+
+    var cardWidth = 300;
+
+    prev.addEventListener('click', function() {
+      track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    next.addEventListener('click', function() {
+      track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+{% stylesheet %}
+  .izamarck-tpi__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .izamarck-tpi__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .izamarck-tpi__title {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  .izamarck-tpi__nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .izamarck-tpi__view-all {
+    color: rgba(0,0,0,0.5);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin-right: 4px;
+  }
+
+  .izamarck-tpi__view-all:hover {
+    color: #000;
+  }
+
+  .izamarck-tpi__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: transparent;
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+  }
+
+  .izamarck-tpi__arrow:hover {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+  }
+
+  .izamarck-tpi__track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .izamarck-tpi__track::-webkit-scrollbar { display: none; }
+
+  .izamarck-tpi__card {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .izamarck-tpi__card-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: #e8e8e8;
+  }
+
+  .izamarck-tpi__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s ease;
+  }
+
+  .izamarck-tpi__card:hover .izamarck-tpi__card-img {
+    transform: scale(1.04);
+  }
+
+  .izamarck-tpi__card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+  }
+
+  .izamarck-tpi__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+  }
+
+  .izamarck-tpi__badge--new-in,
+  .izamarck-tpi__badge--new { background: #000; color: #fff; }
+  .izamarck-tpi__badge--sale { background: #D4A843; color: #000; }
+  .izamarck-tpi__badge--promo { background: #D4A843; color: #000; }
+
+  .izamarck-tpi__wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
+  }
+
+  .izamarck-tpi__wishlist:hover,
+  .izamarck-tpi__wishlist--active {
+    color: #D4A843;
+  }
+
+  .izamarck-tpi__wishlist--active svg {
+    fill: #D4A843;
+    stroke: #D4A843;
+  }
+
+  .izamarck-tpi__card-info {
+    padding: 12px 0 0;
+  }
+
+  .izamarck-tpi__card-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .izamarck-tpi__card-prices {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .izamarck-tpi__price {
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .izamarck-tpi__price--sale {
+    color: #D4A843;
+  }
+
+  .izamarck-tpi__price--original {
+    color: rgba(0,0,0,0.4);
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+
+  @media screen and (max-width: 749px) {
+    .izamarck-tpi__card { flex: 0 0 200px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "IZAMARCK — Te Puede Interesar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Te Puede Interesar"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Colección de productos"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "Enlace Ver Todo"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#f7f7f5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "IZAMARCK — Te Puede Interesar"
+    }
+  ]
+}
+{% endschema %}

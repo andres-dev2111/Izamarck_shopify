@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ── Google Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 
 /* ── CSS Custom Properties ── */
 :root {
@@ -1142,4 +1142,600 @@ header-component,
 @keyframes izamarckFadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* ============================================================
+   PRODUCT LIST SECTION — White background override
+   ============================================================ */
+.section.color-scheme-1 {
+  background: #ffffff !important;
+}
+
+/* Product list header text */
+.section.color-scheme-1 h2,
+.section.color-scheme-1 h3,
+.section.color-scheme-1 h4 {
+  color: #000000 !important;
+}
+
+/* "Ver todo / View all" link in product list */
+.section.color-scheme-1 a.link,
+.section.color-scheme-1 a[class*="link"] {
+  color: #000000 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.3) !important;
+  padding-bottom: 2px !important;
+}
+
+.section.color-scheme-1 a.link:hover {
+  color: #D4A843 !important;
+  border-bottom-color: #D4A843 !important;
+}
+
+/* Product card name + price */
+.card__information .card__heading a,
+.card__heading a {
+  color: #000000 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.price__sale,
+.price--on-sale .price-item--sale {
+  color: #D4A843 !important;
+  font-weight: 700 !important;
+}
+
+.price__regular,
+.price-item--regular {
+  color: #000000 !important;
+}
+
+.price__was,
+.price-item--compare {
+  color: rgba(0,0,0,0.4) !important;
+  text-decoration: line-through !important;
+}
+
+/* Quick-add button */
+.quick-add__submit,
+.product-form__submit {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+.quick-add__submit:hover,
+.product-form__submit:hover {
+  background: #D4A843 !important;
+  border-color: #D4A843 !important;
+  color: #000000 !important;
+}
+
+/* ============================================================
+   PRODUCT PAGE
+   ============================================================ */
+.main-product,
+.product__media-wrapper {
+  background: #ffffff !important;
+}
+
+.product__title {
+  color: #000000 !important;
+  font-size: clamp(1.4rem, 3vw, 2.2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.product__price .price-item--sale {
+  color: #D4A843 !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================================
+   COLLECTION PAGE
+   ============================================================ */
+.main-collection-banner {
+  background: var(--izamarck-dark) !important;
+}
+
+.collection__title {
+  color: var(--izamarck-white) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Filter sidebar */
+.facets-wrapper {
+  background: #ffffff !important;
+}
+
+/* Filter labels */
+.facet-filters__label,
+.facets__heading {
+  color: #000000 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+/* Active filter pills */
+.active-facets__button {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+}
+
+/* Sort by */
+.facet-filters__sort select {
+  border-radius: 0 !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  font-size: 12px !important;
+}
+
+/* ============================================================
+   PREDICTIVE SEARCH / SEARCH MODAL
+   ============================================================ */
+.search-modal {
+  background: rgba(0,0,0,0.95) !important;
+}
+
+.search-modal__content {
+  background: #111111 !important;
+}
+
+.search-modal__form .field__input {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+  font-size: 18px !important;
+  letter-spacing: 0.02em !important;
+}
+
+.search-modal__form .field__input::placeholder {
+  color: rgba(255,255,255,0.3) !important;
+}
+
+.search-modal .predictive-search__result-group-heading {
+  color: rgba(255,255,255,0.4) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+.predictive-search__item-heading {
+  color: #ffffff !important;
+}
+
+.predictive-search__item .price {
+  color: #D4A843 !important;
+}
+
+/* ============================================================
+   MEGA MENU LINK TYPOGRAPHY
+   ============================================================ */
+.header__menu-item-label,
+.header__menu-item > span {
+  font-size: 11px !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+}
+
+/* Active nav item gold underline */
+.header__menu-item[aria-current="page"] .header__menu-item-label,
+.header__menu-item--active .header__menu-item-label {
+  color: #D4A843 !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================================
+   CART / CHECKOUT GLOBAL
+   ============================================================ */
+.cart__footer .totals__total-value {
+  color: #000000 !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+}
+
+.cart .button--checkout {
+  background: #D4A843 !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+}
+
+.cart .button--checkout:hover {
+  background: #c49730 !important;
+}
+
+/* Cart item remove icon */
+.cart-item__remove svg {
+  color: rgba(0,0,0,0.4) !important;
+}
+
+.cart-item__remove:hover svg {
+  color: #000000 !important;
+}
+
+/* ============================================================
+   PAGE & ARTICLE CONTENT
+   ============================================================ */
+.main-page,
+.main-article,
+.main-blog,
+.main-search {
+  background: #ffffff !important;
+}
+
+/* ============================================================
+   404 PAGE
+   ============================================================ */
+.main-404 {
+  background: var(--izamarck-dark) !important;
+}
+
+.main-404 h1,
+.main-404 h2 {
+  color: var(--izamarck-white) !important;
+}
+
+/* ============================================================
+   PASSWORD PAGE
+   ============================================================ */
+.password-header {
+  background: var(--izamarck-black) !important;
+}
+
+.password-header__logo {
+  color: var(--izamarck-gold) !important;
+  font-family: var(--izamarck-font-logo) !important;
+  letter-spacing: 0.15em !important;
+}
+
+/* ============================================================
+   SCROLLBAR (WebKit)
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4A843;
+}
+
+/* ============================================================
+   SELECTION COLOUR
+   ============================================================ */
+::selection {
+  background: #D4A843;
+  color: #000000;
+}
+
+/* ============================================================
+   CART DRAWER — Izamarck white sidebar style
+   ============================================================ */
+cart-drawer-component,
+.cart-drawer {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.cart-drawer__header {
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+.cart-drawer__header-title,
+.cart-drawer__title {
+  color: #000000 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+}
+
+.cart-item {
+  border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.cart-item__name,
+.cart-item__name a {
+  color: #000000 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.cart-item__details {
+  color: rgba(0,0,0,0.45) !important;
+  font-size: 11px !important;
+}
+
+.cart-item__price-wrapper .price-item {
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+.cart-item__price-wrapper .price-item--compare-at {
+  color: rgba(0,0,0,0.35) !important;
+  text-decoration: line-through !important;
+  font-weight: 400 !important;
+}
+
+/* Quantity selectors */
+.quantity-selector__button {
+  border-color: rgba(0,0,0,0.12) !important;
+  color: #000000 !important;
+}
+
+.quantity-selector__button:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.quantity-selector__input {
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+/* Free shipping progress bar */
+.cart-totals__free-shipping-bar {
+  background: rgba(212,168,67,0.15) !important;
+}
+
+.cart-totals__free-shipping-bar-fill {
+  background: #D4A843 !important;
+}
+
+/* Cart total */
+.cart-totals__total,
+.cart-totals__total-label {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.cart-totals__total-value {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* Checkout CTA */
+.cart-drawer__footer {
+  background: #ffffff !important;
+  border-top: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+.cart-drawer__checkout,
+.cart__checkout-btn,
+[name="checkout"],
+.cart-checkout-btn {
+  background: #D4A843 !important;
+  color: #000000 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  padding: 16px !important;
+}
+
+.cart-drawer__checkout:hover,
+[name="checkout"]:hover {
+  background: #c49730 !important;
+  color: #000000 !important;
+}
+
+/* ============================================================
+   MOBILE MENU DRAWER — Izamarck dark style
+   ============================================================ */
+.header-drawer,
+.menu-drawer-container {
+  background: #000000 !important;
+}
+
+.menu-drawer__menu-item,
+.menu-drawer__menu-item-text {
+  color: rgba(255,255,255,0.7) !important;
+  font-size: 13px !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+}
+
+.menu-drawer__menu-item:hover .menu-drawer__menu-item-text,
+.menu-drawer__menu-item--active .menu-drawer__menu-item-text {
+  color: #D4A843 !important;
+}
+
+.menu-drawer__list-item {
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.menu-drawer__close-button,
+.header-drawer__close {
+  color: rgba(255,255,255,0.5) !important;
+}
+
+.menu-drawer__close-button:hover {
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   HEADER SEARCH BUTTON / ICON — gold on hover
+   ============================================================ */
+.header__icon--search svg,
+.search-action svg {
+  color: rgba(255,255,255,0.65) !important;
+  transition: color 0.2s ease !important;
+}
+
+.header__icon--search:hover svg,
+.search-action:hover svg {
+  color: #D4A843 !important;
+}
+
+/* ============================================================
+   SECTION BACKGROUNDS — ensure consistent dark/light pairing
+   ============================================================ */
+
+/* Product list section always white */
+.product-list-section,
+[class*="product-list"] {
+  --color-background: #ffffff;
+}
+
+/* All izamarck custom sections share dark base */
+.izamarck-hero-section,
+.izamarck-lookbook,
+.izamarck-promo {
+  --color-background: #000000;
+}
+
+/* ============================================================
+   PRODUCT RECOMMENDATION SECTION
+   ============================================================ */
+.product-recommendations {
+  background: #f7f7f5 !important;
+}
+
+.product-recommendations .section-header h2 {
+  color: #000000 !important;
+  font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+}
+
+/* ============================================================
+   WISHLIST / HEART ICON global
+   ============================================================ */
+[aria-label*="wishlist"] svg,
+[aria-label*="guardar"] svg,
+.icon-wishlist {
+  color: rgba(0,0,0,0.35) !important;
+  transition: color 0.2s ease !important;
+}
+
+[aria-label*="wishlist"]:hover svg,
+[aria-label*="guardar"]:hover svg {
+  color: #D4A843 !important;
+}
+
+/* ============================================================
+   SWATCH VARIANTS — gold for selected
+   ============================================================ */
+.variant-swatch--selected,
+.variant-swatch[aria-checked="true"],
+.variant-swatch--active {
+  border-color: #D4A843 !important;
+  box-shadow: 0 0 0 2px #D4A843 !important;
+}
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+.breadcrumb__item a,
+.breadcrumbs a {
+  color: rgba(0,0,0,0.4) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+}
+
+.breadcrumb__item a:hover {
+  color: #D4A843 !important;
+}
+
+.breadcrumb__separator {
+  color: rgba(0,0,0,0.2) !important;
+}
+
+/* ============================================================
+   FOCUS RINGS — gold for accessibility
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid #D4A843 !important;
+  outline-offset: 2px !important;
+}
+
+/* ============================================================
+   LOADING / SPINNER
+   ============================================================ */
+.loading__spinner circle,
+.spinner circle {
+  stroke: #D4A843 !important;
+}
+
+/* ============================================================
+   TOAST / NOTIFICATION
+   ============================================================ */
+.cart-notification {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+}
+
+.cart-notification__heading {
+  color: #ffffff !important;
+}
+
+.cart-notification__view-cart {
+  color: #D4A843 !important;
+  border-color: #D4A843 !important;
+}
+
+/* ============================================================
+   FORMS — newsletter, contact
+   ============================================================ */
+.field__input,
+.select__select,
+.customer input,
+.contact-form input,
+.contact-form textarea {
+  border-radius: 0 !important;
+}
+
+.field__input:focus,
+.select__select:focus {
+  border-color: #D4A843 !important;
+  box-shadow: 0 0 0 1px #D4A84340 !important;
+}
+
+/* ============================================================
+   IZAMARCK FOOTER in index overrides native footer
+   ============================================================ */
+.shopify-section:has(.izamarck-footer) + .shopify-section-group-footer-group {
+  display: none !important;
+}
+
+/* ============================================================
+   RESPONSIVE HERO TITLE NEWLINE
+   ============================================================ */
+.izamarck-hero__title br {
+  display: block;
 }

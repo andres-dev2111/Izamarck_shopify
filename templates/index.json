@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "izamarck_hero": {
       "type": "izamarck-hero",
@@ -124,7 +124,10 @@
               "blocks": {}
             }
           },
-          "block_order": ["product_list_text", "product_list_button"]
+          "block_order": [
+            "product_list_text",
+            "product_list_button"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -209,7 +212,11 @@
               "blocks": {}
             }
           },
-          "block_order": ["product_card_gallery", "product_title", "price"]
+          "block_order": [
+            "product_card_gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
       "name": "Más Vendidos",
@@ -250,14 +257,69 @@
       "type": "izamarck-lookbook",
       "name": "IZAMARCK Lookbook",
       "blocks": {
-        "look_1": { "type": "look", "settings": { "tag": "TRENDY", "category": "Trendy", "tall": false, "handle": "@izamarck.oficial" } },
-        "look_2": { "type": "look", "settings": { "tag": "VIRAL",  "category": "Viral",  "tall": true,  "handle": "@izamarck_looks" } },
-        "look_3": { "type": "look", "settings": { "tag": "CASUAL", "category": "Casual", "tall": false, "handle": "@izamarck.moda" } },
-        "look_4": { "type": "look", "settings": { "tag": "PARTY",  "category": "Party",  "tall": false, "handle": "@izamarck.style" } },
-        "look_5": { "type": "look", "settings": { "tag": "COZY",   "category": "Cozy",   "tall": true,  "handle": "@izamarck.cozy" } },
-        "look_6": { "type": "look", "settings": { "tag": "TRENDY", "category": "Trendy", "tall": false, "handle": "@izamarck.men" } }
+        "look_1": {
+          "type": "look",
+          "settings": {
+            "tag": "TRENDY",
+            "category": "Trendy",
+            "tall": false,
+            "handle": "@izamarck.oficial"
+          }
+        },
+        "look_2": {
+          "type": "look",
+          "settings": {
+            "tag": "VIRAL",
+            "category": "Viral",
+            "tall": true,
+            "handle": "@izamarck_looks"
+          }
+        },
+        "look_3": {
+          "type": "look",
+          "settings": {
+            "tag": "CASUAL",
+            "category": "Casual",
+            "tall": false,
+            "handle": "@izamarck.moda"
+          }
+        },
+        "look_4": {
+          "type": "look",
+          "settings": {
+            "tag": "PARTY",
+            "category": "Party",
+            "tall": false,
+            "handle": "@izamarck.style"
+          }
+        },
+        "look_5": {
+          "type": "look",
+          "settings": {
+            "tag": "COZY",
+            "category": "Cozy",
+            "tall": true,
+            "handle": "@izamarck.cozy"
+          }
+        },
+        "look_6": {
+          "type": "look",
+          "settings": {
+            "tag": "TRENDY",
+            "category": "Trendy",
+            "tall": false,
+            "handle": "@izamarck.men"
+          }
+        }
       },
-      "block_order": ["look_1","look_2","look_3","look_4","look_5","look_6"],
+      "block_order": [
+        "look_1",
+        "look_2",
+        "look_3",
+        "look_4",
+        "look_5",
+        "look_6"
+      ],
       "settings": {
         "title": "Lookbook",
         "view_all_label": "Ver todo",
@@ -287,6 +349,15 @@
         "newsletter_text": "Suscríbete y recibe un 10% en tu primera compra.",
         "copyright": "© 2026 IZAMARCK®. Todos los derechos reservados."
       }
+    },
+    "izamarck_tpi": {
+      "type": "izamarck-te-puede-interesar",
+      "name": "IZAMARCK Te Puede Interesar",
+      "settings": {
+        "title": "Te Puede Interesar",
+        "view_all_link": "/collections/all",
+        "bg_color": "#f7f7f5"
+      }
     }
   },
   "order": [
@@ -295,6 +366,7 @@
     "product_list_main",
     "izamarck_promo",
     "izamarck_lookbook",
+    "izamarck_tpi",
     "izamarck_footer_section"
   ]
 }

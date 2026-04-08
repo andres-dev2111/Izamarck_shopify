@@ -51,13 +51,17 @@
     class="header-logo__image-container header-logo__image-container--original"
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    {%- if settings.logo != blank -%}
+      {% render 'image',
+        image: settings.logo,
+        class: 'header-logo__image',
+        height: settings.logo_height,
+        text_fallback: shop.name,
+        style: logo_style
+      %}
+    {%- else -%}
+      <span class="izamarck-logo-text">{{ shop.name | upcase }}</span>
+    {%- endif -%}
   </span>
 
   {% if use_inverse_logo %}
@@ -77,6 +81,21 @@
 </a>
 
 {% stylesheet %}
+  /* IZAMARCK brand logo text */
+  .izamarck-logo-text {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    color: #D4A843;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+
+    @media screen and (max-width: 749px) {
+      font-size: 1.25rem;
+    }
+  }
   .header-logo {
     display: flex;
     height: 100%;
