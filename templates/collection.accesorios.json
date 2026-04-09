@@ -7,8 +7,18 @@
       "type": "izamarck-collection-header",
       "name": "IZAMARCK Cabecera",
       "settings": {
-        "gender_label": "",
-        "subcategory_chips": "VER TODO"
+        "gender_label": "Accesorios",
+        "subcategory_chips": "VER TODO, GORRAS, RIÑONERAS, TOTEBAGS, BOLSOS, GAFAS, BISUTERÍA",
+        "theme_label_1": "GORRAS",
+        "theme_chip_1": "gorras",
+        "theme_label_2": "BOLSOS",
+        "theme_chip_2": "bolsos",
+        "theme_label_3": "GAFAS",
+        "theme_chip_3": "gafas",
+        "theme_label_4": "TOTEBAGS",
+        "theme_chip_4": "totebags",
+        "theme_label_5": "BISUTERÍA",
+        "theme_chip_5": "bisuteria"
       }
     },
     "main": {

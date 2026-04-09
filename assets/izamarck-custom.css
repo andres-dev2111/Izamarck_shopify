@@ -1896,3 +1896,221 @@ cart-drawer-component,
   border-color: #000000 !important;
   font-weight: 700 !important;
 }
+
+/* ============================================================
+   FIXES FROM VISUAL REVIEW — v3
+   ============================================================ */
+
+/* ── Badge colors (Te Puede Interesar + product cards) ──
+   React design: NEW IN = black bg, PROMO = gold, SALE = gold
+   Fix the red badges that appeared in screenshots
+   ============================================================ */
+.izamarck-tpi__badge { border-radius: 0 !important; }
+.izamarck-tpi__badge--new-in,
+.izamarck-tpi__badge--new    { background: #000000 !important; color: #ffffff !important; }
+.izamarck-tpi__badge--promo  { background: #D4A843 !important; color: #000000 !important; }
+.izamarck-tpi__badge--sale   { background: #D4A843 !important; color: #000000 !important; }
+
+/* Override Shopify native badge colours */
+.badge,
+.card__badge .badge {
+  border-radius: 0 !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  padding: 4px 9px !important;
+}
+
+.badge--sale,
+.badge--on-sale {
+  background: #D4A843 !important;
+  color: #000000 !important;
+}
+
+.badge--new,
+.badge[data-badge="NEW IN"],
+.badge--new-in {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Any red badges → override to gold or black */
+.badge[style*="background"],
+.card__badge .badge[style*="background"] {
+  /* intentionally not overriding styled badges — handled per type above */
+}
+
+/* ── Lookbook section: ensure dark background shows ── */
+.shopify-section:has(.izamarck-lookbook),
+section.izamarck-lookbook {
+  background: #000000 !important;
+}
+
+.izamarck-lookbook {
+  background: #000000 !important;
+}
+
+/* Lookbook items: border-radius from our CSS */
+.izamarck-lookbook__item {
+  border-radius: 8px !important;
+}
+
+/* Lookbook cat buttons: ensure gold active state */
+.izamarck-lookbook__cat-btn--active {
+  background: #D4A843 !important;
+  color: #000000 !important;
+  border-color: #D4A843 !important;
+}
+
+/* ── Collection page: product grid background white ── */
+.product-grid-container,
+.collection-wrapper,
+.main-collection {
+  background: #ffffff !important;
+}
+
+/* Ensure collection header section doesn't inherit dark scheme */
+.izamarck-coll-chips,
+.izamarck-coll-themes {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* ── Navlink: active gender highlighted gold ──
+   Nav items (Hombre/Mujer/Accesorios) active state
+   ============================================================ */
+.header__menu-item[aria-current="page"] .header__menu-item-label,
+.header-nav__item[aria-current="page"] .header-nav__link,
+.header__active-menu-item .header__menu-item-label {
+  color: #D4A843 !important;
+  font-weight: 700 !important;
+}
+
+/* Add gold underline like React design */
+.header__menu-item[aria-current="page"]::after,
+.header-nav__item[aria-current="page"]::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #D4A843;
+}
+
+/* ── Footer: ensure newsletter input has placeholder contrast ── */
+.izamarck-footer__newsletter-input {
+  background: rgba(255,255,255,0.06) !important;
+  color: #ffffff !important;
+}
+
+/* ── Lookbook: COMUNIDAD eyebrow + title on homepage transition ──
+   Images 7 shows "COMUNIDAD / Lookbook" heading above the lookbook
+   ============================================================ */
+.izamarck-lookbook-intro {
+  background: #ffffff;
+  text-align: center;
+  padding: 48px 24px 0;
+}
+
+.izamarck-lookbook-intro__eyebrow {
+  color: #D4A843;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.izamarck-lookbook-intro__title {
+  color: #000000;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.izamarck-lookbook-intro__sub {
+  color: rgba(0,0,0,0.45);
+  font-size: 13px;
+}
+
+/* ── Te Puede Interesar: nav arrow buttons black fill ── */
+.izamarck-tpi__arrow--filled {
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* ── Collection page: filter bar styling ── */
+.collection-facets-header,
+.facets__header {
+  background: #ffffff !important;
+  border-top: 1px solid rgba(0,0,0,0.06) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+.facet-filters__summary,
+.facets__summary {
+  color: #000000 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+/* Article count */
+.product-count,
+.results-count {
+  color: rgba(0,0,0,0.45) !important;
+  font-size: 12px !important;
+}
+
+/* ── Announcement bar text sizing ── */
+.announcement-bar__text,
+.announcement-bar__text p {
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+  font-weight: 500 !important;
+}
+
+/* ── Header height compensation for sticky chips ── */
+.izamarck-coll-chips {
+  top: var(--header-group-height, 80px);
+}
+
+/* ── Fix white square in header (desktop) that appeared in screenshot ──
+   The cart drawer toggle button shouldn't show as a white box
+   ============================================================ */
+.header__icon--cart,
+.header__icon--account,
+.header__icon--search,
+[class*="header-actions"] button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Collection product card badges — match gold/black from design ── */
+.product-card .badge {
+  border-radius: 0 !important;
+}
+
+/* Override color-scheme-1 card badges */
+.color-scheme-1 .badge--sale {
+  background: #D4A843 !important;
+  color: #000000 !important;
+}
+
+/* ── IMPORTANT: Remove old category grid CSS that was hiding v2 grid ── */
+/* Re-enable in case display:none was too aggressive */
+.izamarck-categories__top-grid,
+.izamarck-categories__bottom-grid {
+  display: none !important;
+}
+
+.izamarck-cat-grid-v2 {
+  display: grid !important;
+}

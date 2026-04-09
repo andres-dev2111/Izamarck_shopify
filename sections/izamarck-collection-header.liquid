@@ -1,0 +1,310 @@
+{%- liquid
+  assign collection_handle = collection.handle
+  assign gender_label = section.settings.gender_label | default: collection.title
+-%}
+
+{%- comment -%} ── 1. Subcategory chip-tab bar ── {%- endcomment -%}
+<div class="izamarck-coll-chips">
+  <div class="izamarck-coll-chips__inner">
+    {%- assign chips = section.settings.subcategory_chips | split: ',' -%}
+    {%- if chips.size == 0 or section.settings.subcategory_chips == blank -%}
+      {%- assign chips = 'VER TODO' | split: ',' -%}
+    {%- endif -%}
+    {%- for chip in chips -%}
+      {%- assign chip_clean = chip | strip -%}
+      {%- assign is_active = false -%}
+      {%- if forloop.first -%}{%- assign is_active = true -%}{%- endif -%}
+      <button
+        class="izamarck-coll-chips__btn{% if is_active %} izamarck-coll-chips__btn--active{% endif %}"
+        data-chip="{{ chip_clean | handleize }}"
+        type="button"
+      >{{ chip_clean }}</button>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- comment -%} ── 2. Gender label + visual sub-theme thumbnails ── {%- endcomment -%}
+<div class="izamarck-coll-themes">
+  <div class="izamarck-coll-themes__inner">
+    {%- if gender_label != blank -%}
+      <p class="izamarck-coll-themes__label">ROPA PARA {{ gender_label | upcase }}</p>
+    {%- endif -%}
+
+    <div class="izamarck-coll-themes__strip">
+      {%- for i in (1..6) -%}
+        {%- liquid
+          assign img_key   = 'theme_image_' | append: i
+          assign label_key = 'theme_label_' | append: i
+          assign link_key  = 'theme_link_'  | append: i
+          assign chip_key  = 'theme_chip_'  | append: i
+          assign img       = section.settings[img_key]
+          assign label     = section.settings[label_key]
+          assign link      = section.settings[link_key]
+          assign chip_id   = section.settings[chip_key] | handleize
+        -%}
+        {%- if label != blank -%}
+          <button
+            class="izamarck-coll-theme-btn"
+            data-filter-chip="{{ chip_id }}"
+            type="button"
+            {%- if link != blank -%} onclick="window.location='{{ link }}'"{%- endif -%}
+          >
+            {%- if img != blank -%}
+              <img
+                src="{{ img | image_url: width: 240 }}"
+                alt="{{ img.alt | escape | default: label }}"
+                loading="lazy"
+                class="izamarck-coll-theme-btn__img"
+              >
+            {%- else -%}
+              <div class="izamarck-coll-theme-btn__placeholder"></div>
+            {%- endif -%}
+            <div class="izamarck-coll-theme-btn__overlay"></div>
+            <span class="izamarck-coll-theme-btn__label">{{ label }}</span>
+          </button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  function initCollectionChips() {
+    var chipBtns = document.querySelectorAll('.izamarck-coll-chips__btn');
+    var themeBtns = document.querySelectorAll('.izamarck-coll-theme-btn[data-filter-chip]');
+
+    function setActive(chipId) {
+      chipBtns.forEach(function(b) {
+        b.classList.toggle('izamarck-coll-chips__btn--active', b.dataset.chip === chipId);
+      });
+    }
+
+    chipBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        setActive(this.dataset.chip);
+        /* When Shopify facets are active, update the URL filter */
+        var url = new URL(window.location.href);
+        if (this.dataset.chip && this.dataset.chip !== 'ver-todo') {
+          url.searchParams.set('filter.p.tag', this.dataset.chip);
+        } else {
+          url.searchParams.delete('filter.p.tag');
+        }
+        /* Soft nav — let Shopify handle pagination */
+        window.location.href = url.toString();
+      });
+    });
+
+    /* Theme thumbnail buttons — map to chip */
+    themeBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var chip = this.dataset.filterChip;
+        /* find and click the matching chip */
+        var target = document.querySelector('.izamarck-coll-chips__btn[data-chip="' + chip + '"]');
+        if (target) {
+          target.click();
+        }
+      });
+    });
+
+    /* Highlight active chip from URL */
+    var urlChip = new URL(window.location.href).searchParams.get('filter.p.tag');
+    if (urlChip) {
+      setActive(urlChip);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCollectionChips);
+  } else {
+    initCollectionChips();
+  }
+})();
+</script>
+
+{% stylesheet %}
+  /* ── Chip tab bar ── */
+  .izamarck-coll-chips {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    background: #ffffff;
+    position: sticky;
+    top: var(--header-group-height, 0px);
+    z-index: 20;
+  }
+
+  .izamarck-coll-chips__inner {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .izamarck-coll-chips__inner::-webkit-scrollbar { display: none; }
+
+  .izamarck-coll-chips__btn {
+    flex-shrink: 0;
+    padding: 14px 14px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(0,0,0,0.4);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .izamarck-coll-chips__btn:hover {
+    color: #000000;
+  }
+
+  .izamarck-coll-chips__btn--active {
+    color: #000000 !important;
+    border-bottom-color: #000000 !important;
+    font-weight: 700 !important;
+  }
+
+  /* ── Visual theme strip ── */
+  .izamarck-coll-themes {
+    background: #ffffff;
+    padding: 20px 0 16px;
+  }
+
+  .izamarck-coll-themes__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .izamarck-coll-themes__label {
+    color: rgba(0,0,0,0.38);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .izamarck-coll-themes__strip {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .izamarck-coll-themes__strip::-webkit-scrollbar { display: none; }
+
+  .izamarck-coll-theme-btn {
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    background: #e0e0e0;
+    width: clamp(90px, 12vw, 120px);
+    height: clamp(60px, 8vw, 80px);
+  }
+
+  .izamarck-coll-theme-btn__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .izamarck-coll-theme-btn:hover .izamarck-coll-theme-btn__img {
+    transform: scale(1.05);
+  }
+
+  .izamarck-coll-theme-btn__placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+  }
+
+  .izamarck-coll-theme-btn__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.40);
+    transition: background 0.2s ease;
+  }
+
+  .izamarck-coll-theme-btn:hover .izamarck-coll-theme-btn__overlay {
+    background: rgba(0,0,0,0.55);
+  }
+
+  .izamarck-coll-theme-btn__label {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "IZAMARCK — Cabecera Colección",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "gender_label",
+      "label": "Género (ej: Hombre, Mujer, Accesorios)",
+      "default": "Hombre"
+    },
+    {
+      "type": "textarea",
+      "id": "subcategory_chips",
+      "label": "Subcategorías separadas por coma",
+      "info": "Deben coincidir con las etiquetas (tags) de tus productos en Shopify",
+      "default": "VER TODO, CAMISETAS, PANTALONES, JEANS, JOGGERS, SHORTS, BUZOS, POLOS, CAMISAS, GORRAS"
+    },
+    {
+      "type": "header",
+      "content": "Thumbnails de subcategorías"
+    },
+    { "type": "image_picker", "id": "theme_image_1",  "label": "Thumb 1 — imagen" },
+    { "type": "text",         "id": "theme_label_1",  "label": "Thumb 1 — nombre", "default": "BÁSICOS" },
+    { "type": "text",         "id": "theme_chip_1",   "label": "Thumb 1 — chip (filtrar al hacer click)", "default": "CAMISETAS" },
+    { "type": "url",          "id": "theme_link_1",   "label": "Thumb 1 — enlace (opcional)" },
+    { "type": "image_picker", "id": "theme_image_2",  "label": "Thumb 2 — imagen" },
+    { "type": "text",         "id": "theme_label_2",  "label": "Thumb 2 — nombre", "default": "SPORTY" },
+    { "type": "text",         "id": "theme_chip_2",   "label": "Thumb 2 — chip", "default": "SHORTS" },
+    { "type": "url",          "id": "theme_link_2",   "label": "Thumb 2 — enlace (opcional)" },
+    { "type": "image_picker", "id": "theme_image_3",  "label": "Thumb 3 — imagen" },
+    { "type": "text",         "id": "theme_label_3",  "label": "Thumb 3 — nombre", "default": "URBAN" },
+    { "type": "text",         "id": "theme_chip_3",   "label": "Thumb 3 — chip", "default": "PANTALONES" },
+    { "type": "url",          "id": "theme_link_3",   "label": "Thumb 3 — enlace (opcional)" },
+    { "type": "image_picker", "id": "theme_image_4",  "label": "Thumb 4 — imagen" },
+    { "type": "text",         "id": "theme_label_4",  "label": "Thumb 4 — nombre", "default": "DENIM" },
+    { "type": "text",         "id": "theme_chip_4",   "label": "Thumb 4 — chip", "default": "JEANS" },
+    { "type": "url",          "id": "theme_link_4",   "label": "Thumb 4 — enlace (opcional)" },
+    { "type": "image_picker", "id": "theme_image_5",  "label": "Thumb 5 — imagen" },
+    { "type": "text",         "id": "theme_label_5",  "label": "Thumb 5 — nombre", "default": "POLOS" },
+    { "type": "text",         "id": "theme_chip_5",   "label": "Thumb 5 — chip", "default": "POLOS" },
+    { "type": "url",          "id": "theme_link_5",   "label": "Thumb 5 — enlace (opcional)" },
+    { "type": "image_picker", "id": "theme_image_6",  "label": "Thumb 6 — imagen (opcional)" },
+    { "type": "text",         "id": "theme_label_6",  "label": "Thumb 6 — nombre" },
+    { "type": "text",         "id": "theme_chip_6",   "label": "Thumb 6 — chip" },
+    { "type": "url",          "id": "theme_link_6",   "label": "Thumb 6 — enlace (opcional)" }
+  ],
+  "presets": [
+    {
+      "name": "IZAMARCK — Cabecera Colección"
+    }
+  ]
+}
+{% endschema %}
