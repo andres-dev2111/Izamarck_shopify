@@ -1,0 +1,439 @@
+/* ============================================================
+   IZAMARCK — Search Modal Override
+   Matches the React SearchOverlay: white panel, trending/recent
+   state, results grid with add-to-cart hover bar
+   ============================================================ */
+
+/* Reset the Shopify popover to white full-top panel */
+.search-modal,
+#search-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 200 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  pointer-events: none !important;
+}
+
+.search-modal[open],
+#search-modal[open] {
+  pointer-events: auto !important;
+}
+
+.search-modal__content,
+.search-modal dialog.dialog-modal {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 85vh !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  animation: izamarckSlideDown 0.2s ease !important;
+}
+
+@keyframes izamarckSlideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Backdrop */
+.search-modal::backdrop,
+.search-modal dialog.dialog-modal::backdrop {
+  background: rgba(0,0,0,0.75) !important;
+  backdrop-filter: blur(3px) !important;
+}
+
+/* ── Search bar row ── */
+.predictive-search__form,
+.search-modal .form {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 20px 24px !important;
+  max-width: 768px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* Search input */
+.predictive-search__input,
+.search-modal input[type="search"],
+.search-modal .field__input {
+  flex: 1 !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.predictive-search__input::placeholder,
+.search-modal input[type="search"]::placeholder {
+  color: rgba(0,0,0,0.25) !important;
+}
+
+/* Submit/search icon */
+.predictive-search__submit svg,
+.search-modal .field__button svg {
+  color: rgba(0,0,0,0.35) !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Close button */
+.predictive-search__close,
+.search-modal .close-button {
+  color: rgba(0,0,0,0.35) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+}
+
+.predictive-search__close:hover,
+.search-modal .close-button:hover {
+  color: #000000 !important;
+}
+
+/* Divider */
+.predictive-search .field,
+.predictive-search__separator {
+  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+}
+
+/* ── Results area ── */
+.predictive-search__results,
+.predictive-search-results {
+  max-width: 768px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  padding: 20px 24px !important;
+  overflow-y: auto !important;
+}
+
+/* Section headings: TENDENCIAS / BÚSQUEDAS RECIENTES */
+.predictive-search-results__title,
+.predictive-search__heading {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color: rgba(0,0,0,0.38) !important;
+  margin-bottom: 14px !important;
+}
+
+/* Result items */
+.predictive-search-results__item a,
+.predictive-search__item {
+  color: #000000 !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.predictive-search-results__item a:hover {
+  color: #D4A843 !important;
+}
+
+/* Product cards in search results */
+.predictive-search-results__card--product {
+  background: transparent !important;
+}
+
+.predictive-search-results__card--product .resource-card__media {
+  background: #f4f4f2 !important;
+  border-radius: 0 !important;
+}
+
+.predictive-search-results__card--product .resource-card__title {
+  color: #000000 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.predictive-search-results__card--product .price-item {
+  color: #000000 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* Count label */
+.predictive-search-results__count {
+  font-size: 10px !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color: rgba(0,0,0,0.38) !important;
+  font-weight: 700 !important;
+  margin-bottom: 16px !important;
+}
+
+/* "Ver todos los resultados" link */
+.predictive-search__all-results,
+.predictive-search-results__view-all {
+  color: #000000 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.25) !important;
+  padding-bottom: 2px !important;
+  transition: color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.predictive-search__all-results:hover {
+  color: #D4A843 !important;
+  border-color: #D4A843 !important;
+}
+
+/* No results */
+.predictive-search__empty {
+  text-align: center !important;
+  padding: 32px 0 !important;
+  color: rgba(0,0,0,0.4) !important;
+  font-size: 13px !important;
+}
+
+/* ── IZAMARCK Search: trending/recent default state ── */
+.izamarck-search-default {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 20px 0;
+}
+
+@media (max-width: 599px) {
+  .izamarck-search-default { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.izamarck-search-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.izamarck-search-section-title span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+}
+
+.izamarck-search-section-title svg {
+  color: #D4A843;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.izamarck-search-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.izamarck-search-list li a,
+.izamarck-search-list li button {
+  font-size: 13px;
+  color: #000000;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+  text-align: left;
+}
+
+.izamarck-search-list li a:hover,
+.izamarck-search-list li button:hover {
+  color: #D4A843;
+}
+
+/* Recent search item with remove button */
+.izamarck-search-recent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.izamarck-search-recent-item button:last-child {
+  opacity: 0;
+  color: rgba(0,0,0,0.25);
+  font-size: 11px;
+  transition: opacity 0.15s ease;
+}
+
+.izamarck-search-recent-item:hover button:last-child {
+  opacity: 1;
+}
+
+/* Search results count */
+.izamarck-search-results-count {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  margin-bottom: 16px;
+}
+
+/* Search result grid */
+.izamarck-search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 599px) {
+  .izamarck-search-results-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.izamarck-search-result-card {
+  cursor: pointer;
+}
+
+.izamarck-search-result-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #f4f4f2;
+  aspect-ratio: 3/4;
+}
+
+.izamarck-search-result-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+}
+
+.izamarck-search-result-card:hover .izamarck-search-result-card__img-wrap img {
+  transform: scale(1.05);
+}
+
+.izamarck-search-result-card__tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+}
+
+.izamarck-search-result-card__add {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #000000;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: height 0.3s ease, background 0.2s ease;
+}
+
+.izamarck-search-result-card:hover .izamarck-search-result-card__add {
+  height: 36px;
+}
+
+.izamarck-search-result-card__add--added {
+  background: #D4A843 !important;
+  color: #000000 !important;
+}
+
+.izamarck-search-result-card__name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.izamarck-search-result-card__price {
+  font-size: 11px;
+  color: rgba(0,0,0,0.5);
+  margin-top: 2px;
+}
+
+.izamarck-search-result-card__meta {
+  font-size: 10px;
+  color: rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1px;
+}
+
+/* No results */
+.izamarck-search-no-results {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.izamarck-search-no-results p {
+  color: rgba(0,0,0,0.4);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.izamarck-search-no-results strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+.izamarck-search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.izamarck-search-suggestion {
+  padding: 6px 12px;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.izamarck-search-suggestion:hover {
+  border-color: #000000;
+  color: #000000;
+}

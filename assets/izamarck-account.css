@@ -1,0 +1,351 @@
+/* ============================================================
+   IZAMARCK — Account / Profile Sidebar Override
+   Matches React ProfileSidebar: dark #111 bg, gold accents,
+   login/register tabs, profile menu items
+   ============================================================ */
+
+/* Account drawer container */
+.account-drawer,
+.customer-drawer,
+dialog[id*="account"],
+[data-drawer="account"] {
+  background: #111111 !important;
+  color: #ffffff !important;
+  max-width: 380px !important;
+}
+
+/* ── Header ── */
+.account-drawer__header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 20px 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.account-drawer__brand {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  color: #D4A843 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.account-drawer__close {
+  color: rgba(255,255,255,0.4) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+}
+
+.account-drawer__close:hover {
+  color: #ffffff !important;
+}
+
+/* ── Login/Register tabs ── */
+.account-drawer__tabs {
+  display: flex !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  margin-bottom: 32px !important;
+}
+
+.account-drawer__tab {
+  flex: 1 !important;
+  padding: 10px 0 !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,0.3) !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.account-drawer__tab--active {
+  color: #ffffff !important;
+  border-bottom-color: #D4A843 !important;
+  font-weight: 700 !important;
+}
+
+/* ── Form inputs ── */
+.account-drawer__label {
+  display: block !important;
+  color: rgba(255,255,255,0.45) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+}
+
+.account-drawer__input,
+.account-drawer input[type="email"],
+.account-drawer input[type="password"],
+.account-drawer input[type="text"] {
+  width: 100% !important;
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 0 !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  padding: 12px 16px !important;
+  outline: none !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.account-drawer__input:focus {
+  border-color: #D4A843 !important;
+}
+
+.account-drawer__input::placeholder {
+  color: rgba(255,255,255,0.18) !important;
+}
+
+/* ── Submit button ── */
+.account-drawer__submit {
+  width: 100% !important;
+  background: #D4A843 !important;
+  color: #000000 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 12px 20px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+.account-drawer__submit:hover {
+  background: #c49730 !important;
+}
+
+/* ── Divider with "o" ── */
+.account-drawer__divider {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin: 16px 0 !important;
+}
+
+.account-drawer__divider::before,
+.account-drawer__divider::after {
+  content: '' !important;
+  flex: 1 !important;
+  border-top: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.account-drawer__divider-text {
+  color: rgba(255,255,255,0.22) !important;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.2em !important;
+}
+
+/* ── Social login button ── */
+.account-drawer__social {
+  width: 100% !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  background: transparent !important;
+  color: rgba(255,255,255,0.6) !important;
+  padding: 10px 16px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border-radius: 0 !important;
+}
+
+.account-drawer__social:hover {
+  border-color: rgba(255,255,255,0.3) !important;
+  color: #ffffff !important;
+}
+
+/* ── Profile (logged-in) state ── */
+.account-drawer__user-card {
+  padding: 32px 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.account-drawer__avatar {
+  width: 48px !important;
+  height: 48px !important;
+  background: rgba(212,168,67,0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 12px !important;
+}
+
+.account-drawer__user-name {
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 2px !important;
+}
+
+.account-drawer__user-email {
+  color: rgba(255,255,255,0.38) !important;
+  font-size: 11px !important;
+}
+
+/* Loyalty badge */
+.account-drawer__loyalty {
+  background: rgba(212,168,67,0.08) !important;
+  border: 1px solid rgba(212,168,67,0.18) !important;
+  padding: 12px 16px !important;
+  margin-top: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.account-drawer__loyalty-title {
+  color: #D4A843 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+.account-drawer__loyalty-points {
+  color: rgba(255,255,255,0.38) !important;
+  font-size: 11px !important;
+  margin-top: 2px !important;
+}
+
+/* ── Profile menu items ── */
+.account-drawer__menu-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 16px 24px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+.account-drawer__menu-item:hover {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.account-drawer__menu-item:hover .account-drawer__menu-icon {
+  color: #D4A843 !important;
+}
+
+.account-drawer__menu-icon {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255,255,255,0.05) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  color: rgba(255,255,255,0.5) !important;
+  transition: color 0.2s ease !important;
+}
+
+.account-drawer__menu-label {
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+}
+
+.account-drawer__menu-sub {
+  color: rgba(255,255,255,0.28) !important;
+  font-size: 10px !important;
+  margin-top: 2px !important;
+}
+
+.account-drawer__menu-chevron {
+  margin-left: auto !important;
+  color: rgba(255,255,255,0.18) !important;
+  transition: color 0.2s ease !important;
+}
+
+.account-drawer__menu-item:hover .account-drawer__menu-chevron {
+  color: rgba(255,255,255,0.45) !important;
+}
+
+/* ── Logout ── */
+.account-drawer__logout {
+  padding: 20px 24px !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.account-drawer__logout-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: rgba(255,255,255,0.3) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.account-drawer__logout-btn:hover {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* ── Shopify native customer account overrides ── */
+.customer-account-drawer {
+  background: #111111 !important;
+}
+
+.customer-account-drawer .drawer__header {
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.customer-account-drawer a,
+.customer-account-drawer button {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+.customer-account-drawer a:hover {
+  color: #D4A843 !important;
+}
+
+/* Shopify login form styling */
+.customer .field__input,
+.customer-login input,
+.customer-register input {
+  border-radius: 0 !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  background: rgba(255,255,255,0.05) !important;
+  color: #ffffff !important;
+}
+
+.customer .field__input:focus {
+  border-color: #D4A843 !important;
+}
+
+.customer .button {
+  background: #D4A843 !important;
+  color: #000000 !important;
+  border-radius: 0 !important;
+}
+
+.customer .button:hover {
+  background: #c49730 !important;
+}

@@ -1,0 +1,27 @@
+{%- comment -%}
+  IZAMARCK Free Shipping Bar — matches React CartSidebar design
+  Shows progress toward free shipping threshold (200,000 COP)
+{%- endcomment -%}
+
+{%- assign threshold = 200000 -%}
+{%- assign subtotal_cop = cart.items_subtotal_price | divided_by: 100 -%}
+{%- assign remaining = threshold | minus: subtotal_cop -%}
+{%- assign progress_pct = subtotal_cop | times: 100 | divided_by: threshold -%}
+{%- if progress_pct > 100 -%}{%- assign progress_pct = 100 -%}{%- endif -%}
+
+{%- if cart.item_count > 0 -%}
+  <div class="izamarck-shipping-bar">
+    {%- if remaining > 0 -%}
+      <p class="izamarck-shipping-bar__text">
+        Te faltan <strong>{{ remaining | money_without_trailing_zeros }}</strong> para envío gratis
+      </p>
+    {%- else -%}
+      <p class="izamarck-shipping-bar__text izamarck-shipping-bar__text--free">
+        ✓ ¡Envío gratis en tu pedido!
+      </p>
+    {%- endif -%}
+    <div class="izamarck-shipping-bar__bg">
+      <div class="izamarck-shipping-bar__fill" style="width: {{ progress_pct }}%;"></div>
+    </div>
+  </div>
+{%- endif -%}
