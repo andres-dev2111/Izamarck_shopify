@@ -2114,3 +2114,142 @@ section.izamarck-lookbook {
 .izamarck-cat-grid-v2 {
   display: grid !important;
 }
+
+/* ============================================================
+   CRITICAL FIXES v4
+   ============================================================ */
+
+/* ── FIX 1: White gap between announcement bar and header ──
+   Shopify adds a white background to the section-group wrapper.
+   ============================================================ */
+#header-group,
+.shopify-section-group-header-group,
+.shopify-section-group-header-group > *,
+[data-section-group="header"],
+[data-section-group="header"] > * {
+  background-color: #000000 !important;
+}
+
+/* Remove any section margin/padding that creates the white gap */
+.shopify-section-group-header-group .shopify-section,
+.shopify-section-group-header-group .section {
+  background-color: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* The section-background div inside each header section */
+.shopify-section-group-header-group .section-background {
+  background-color: #000000 !important;
+}
+
+/* Ensure no white line between announcement and nav */
+.announcement-bar {
+  margin-bottom: 0 !important;
+  padding-bottom: 8px !important;
+}
+
+.header-wrapper {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ── FIX 2: Cart icon white square ──
+   cart-bubble__background uses --color-primary-button-background
+   which is white in our dark scheme. Override to gold.
+   ============================================================ */
+.cart-bubble__background {
+  background-color: #D4A843 !important;
+}
+
+.cart-bubble {
+  color: #000000 !important;
+}
+
+.cart-bubble__text {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* When cart is empty, hide the bubble completely */
+.cart-bubble.visually-hidden {
+  display: none !important;
+}
+
+/* The cart icon SVG itself — make it visible on dark background */
+cart-icon .svg-wrapper svg,
+.header-actions__cart-icon .svg-wrapper svg {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+cart-icon:hover .svg-wrapper svg {
+  color: #D4A843 !important;
+}
+
+/* ── FIX 3: Lookbook appears twice ──
+   The intro (white bg) + the lookbook section header both show.
+   Hide the duplicate header INSIDE the dark lookbook section —
+   keep only the white intro above it.
+   ============================================================ */
+.izamarck-lookbook .izamarck-lookbook__header {
+  display: none !important;
+}
+
+/* Make the intro background seamlessly connect with lookbook dark section */
+.izamarck-lookbook-intro {
+  background: #ffffff !important;
+  padding-bottom: 32px !important;
+}
+
+/* Lookbook section starts immediately after intro — no extra padding */
+.shopify-section:has(.izamarck-lookbook-intro) + .shopify-section .izamarck-lookbook,
+.izamarck-lookbook {
+  padding-top: 24px !important;
+}
+
+/* ── TPI Add-to-cart hover bar ── */
+.izamarck-tpi__card-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.izamarck-tpi__add-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #000000;
+  border: none;
+  cursor: pointer;
+  transition: height 0.3s ease, background 0.2s ease;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.izamarck-tpi__card:hover .izamarck-tpi__add-bar {
+  height: 40px;
+}
+
+.izamarck-tpi__add-bar--added,
+.izamarck-tpi__add-bar[data-added] {
+  background: #D4A843 !important;
+  color: #000000 !important;
+}
+
+.izamarck-tpi__add-bar-icon svg {
+  display: block;
+}
+
+/* ── TPI section background ── */
+.izamarck-tpi {
+  background: #f7f7f5;
+}

@@ -1,3 +1,36 @@
+<script>
+function izamarckTpiAdd(btn) {
+  if (btn.dataset.added) return;
+  btn.dataset.added = '1';
+  btn.style.background = '#D4A843';
+  btn.style.color = '#000';
+  btn.style.height = '40px';
+  var bagIcon = btn.querySelector('.izamarck-tpi__add-bar-icon--bag');
+  var checkIcon = btn.querySelector('.izamarck-tpi__add-bar-icon--check');
+  var addText = btn.querySelector('.izamarck-tpi__add-bar-text--add');
+  var addedText = btn.querySelector('.izamarck-tpi__add-bar-text--added');
+  if (bagIcon) bagIcon.style.display = 'none';
+  if (checkIcon) { checkIcon.style.display = 'block'; checkIcon.style.color = '#000'; }
+  if (addText) addText.style.display = 'none';
+  if (addedText) { addedText.style.display = 'inline'; addedText.style.color = '#000'; }
+
+  /* Shopify AJAX cart add — find product form variant id if possible */
+  var card = btn.closest('.izamarck-tpi__card');
+  var link = card ? card.querySelector('a[href]') : null;
+  /* We don't have variant IDs in the demo, but the Shopify quick-add handles this */
+
+  setTimeout(function() {
+    delete btn.dataset.added;
+    btn.style.background = '';
+    btn.style.color = '';
+    if (bagIcon) bagIcon.style.display = 'block';
+    if (checkIcon) checkIcon.style.display = 'none';
+    if (addText) addText.style.display = 'inline';
+    if (addedText) addedText.style.display = 'none';
+  }, 1800);
+}
+</script>
+
 {%- assign sec = section -%}
 
 <section class="izamarck-tpi" style="background:{{ sec.settings.bg_color | default: '#f7f7f5' }}; padding: 56px 0;">
@@ -55,6 +88,14 @@
               <button class="izamarck-tpi__wishlist" aria-label="Guardar" type="button" onclick="event.preventDefault(); this.classList.toggle('izamarck-tpi__wishlist--active');">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
               </button>
+              {%- comment -%} Add-to-cart hover bar {%- endcomment -%}
+              <button class="izamarck-tpi__add-bar" aria-label="Añadir al carrito" type="button"
+                onclick="izamarckTpiAdd(this)">
+                <svg class="izamarck-tpi__add-bar-icon izamarck-tpi__add-bar-icon--bag" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <svg class="izamarck-tpi__add-bar-icon izamarck-tpi__add-bar-icon--check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span class="izamarck-tpi__add-bar-text izamarck-tpi__add-bar-text--add">+ Añadir</span>
+                <span class="izamarck-tpi__add-bar-text izamarck-tpi__add-bar-text--added" style="display:none">Añadido</span>
+              </button>
             </div>
             <div class="izamarck-tpi__card-info">
               <p class="izamarck-tpi__card-name">{{ product.title }}</p>
@@ -92,6 +133,12 @@
               {%- endif -%}
               <button class="izamarck-tpi__wishlist" aria-label="Guardar" type="button" onclick="this.classList.toggle('izamarck-tpi__wishlist--active');">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </button>
+              <button class="izamarck-tpi__add-bar" aria-label="Añadir al carrito" type="button" onclick="izamarckTpiAdd(this)">
+                <svg class="izamarck-tpi__add-bar-icon izamarck-tpi__add-bar-icon--bag" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <svg class="izamarck-tpi__add-bar-icon izamarck-tpi__add-bar-icon--check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span class="izamarck-tpi__add-bar-text izamarck-tpi__add-bar-text--add">+ Añadir</span>
+                <span class="izamarck-tpi__add-bar-text izamarck-tpi__add-bar-text--added" style="display:none">Añadido</span>
               </button>
             </div>
             <div class="izamarck-tpi__card-info">

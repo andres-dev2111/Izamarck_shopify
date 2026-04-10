@@ -38,13 +38,6 @@
 </div>
 
 <section class="izamarck-lookbook">
-  <div class="izamarck-lookbook__header">
-    <h2 class="izamarck-lookbook__title">{{ section.settings.title | default: 'Lookbook' }}</h2>
-    <a href="{{ section.settings.view_all_link | default: '#' }}" class="izamarck-btn-ghost">
-      {{ section.settings.view_all_label | default: 'Ver todo' }}
-    </a>
-  </div>
-
   {%- comment -%} Category filter buttons {%- endcomment -%}
   <div class="izamarck-lookbook__cats" role="group" aria-label="Filtrar por categoría">
     {%- assign cats = 'Todos,Trendy,Casual,Denim,Viral,Party,Activo,Cozy,Leather Look' | split: ',' -%}
