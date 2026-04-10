@@ -11,174 +11,50 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "footer": {
-      "type": "footer",
-      "blocks": {
-        "group_wErUQf": {
-          "type": "group",
-          "name": "Join our email list",
-          "settings": {
-            "link": "",
-            "open_in_new_tab": false,
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 6,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "placeholder": "",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_pF6rVi": {
-              "type": "text",
-              "name": "Heading",
-              "settings": {
-                "text": "<h2>Join our email list</h2>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_HafH7P": {
-              "type": "text",
-              "name": "Text",
-              "settings": {
-                "text": "<p>Get exclusive deals and early access to new products.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_pF6rVi",
-            "text_HafH7P"
-          ]
-        },
-        "email-signup_HafH7P": {
-          "type": "email-signup",
-          "name": "Email Signup",
-          "settings": {
-            "width": "fill"
-          }
-        }
-      },
-      "block_order": [
-        "group_wErUQf",
-        "email-signup_HafH7P"
-      ],
-      "name": "t:names.footer",
+    "izamarck_footer_qPcPtc": {
+      "type": "izamarck-footer",
+      "name": "IZAMARCK — Footer",
       "settings": {
-        "section_width": "page-width",
-        "gap": 20,
-        "color_scheme": "scheme-2",
-        "padding-block-start": 36,
-        "padding-block-end": 36
+        "logo_text": "IZAMARCK",
+        "tagline": "Moda con identidad",
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "youtube": "",
+        "spotify": "",
+        "col1_title": "Sobre la Marca",
+        "col1_link1_label": "Sobre Nosotros",
+        "col1_link1_url": "",
+        "col1_link2_label": "Nuestra Historia",
+        "col1_link2_url": "",
+        "col1_link3_label": "Cultura IZAMARCK",
+        "col1_link3_url": "",
+        "col1_link4_label": "Trabaja con Nosotros",
+        "col1_link4_url": "",
+        "col1_link5_label": "La Vida en IZAMARCK",
+        "col1_link5_url": "",
+        "col2_title": "Ayuda",
+        "col2_link1_label": "Cambios, Devoluciones y Garantías",
+        "col2_link1_url": "",
+        "col2_link2_label": "Términos y Condiciones",
+        "col2_link2_url": "",
+        "col2_link3_label": "Política de Envíos",
+        "col2_link3_url": "",
+        "col2_link4_label": "Preguntas Frecuentes",
+        "col2_link4_url": "",
+        "col2_link5_label": "Escríbenos",
+        "col2_link5_url": "",
+        "col3_title": "Contacto",
+        "contact_info": "NIT: 000.000.000-0\nWhatsApp: 300 000 00 00\nPBX: 01 8000 00 00 00\nMedellín, Colombia\ncontacto@izamarck.com",
+        "newsletter_text": "Suscríbete y recibe un 10% en tu primera compra.",
+        "copyright": "© 2026 IZAMARCK®. Todos los derechos reservados.",
+        "privacy_url": "",
+        "cookies_url": "",
+        "legal_url": ""
       }
-    },
-    "utilities": {
-      "type": "footer-utilities",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 24,
-        "divider_thickness": 1,
-        "color_scheme": "scheme-2",
-        "padding-block-start": 12,
-        "padding-block-end": 16
-      },
-      "blocks": {
-        "copyright": {
-          "type": "footer-copyright",
-          "settings": {
-            "show_powered_by": true,
-            "font_size": "0.75rem",
-            "case": "none"
-          }
-        },
-        "policy_list": {
-          "type": "footer-policy-list",
-          "settings": {
-            "font_size": "0.75rem",
-            "case": "none"
-          }
-        },
-        "social_icons": {
-          "type": "social-links",
-          "settings": {
-            "facebook_url": "https://www.facebook.com",
-            "instagram_url": "https://www.instagram.com",
-            "tiktok_url": "https://www.tiktok.com",
-            "twitter_url": "https://www.twitter.com",
-            "youtube_url": "https://www.youtube.com"
-          }
-        }
-      },
-      "block_order": [
-        "copyright",
-        "policy_list",
-        "social_icons"
-      ]
     }
   },
   "order": [
-    "footer",
-    "utilities"
+    "izamarck_footer_qPcPtc"
   ]
 }
