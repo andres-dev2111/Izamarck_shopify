@@ -1024,63 +1024,9 @@ header-component,
   text-transform: uppercase !important;
 }
 
-/* ============================================================
-   SEARCH OVERLAY
-   ============================================================ */
-.predictive-search,
-.search-modal__content {
-  background: var(--izamarck-darker) !important;
-}
+/* Search styles moved to izamarck-search.css */
 
-.predictive-search input,
-.search-modal__input {
-  background: rgba(255,255,255,0.06) !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  color: var(--izamarck-white) !important;
-}
-
-.predictive-search input::placeholder {
-  color: rgba(255,255,255,0.3) !important;
-}
-
-/* ============================================================
-   CART DRAWER
-   ============================================================ */
-.cart-drawer,
-.drawer[id*="cart"] {
-  background: var(--izamarck-darker) !important;
-}
-
-.cart-drawer__header,
-.cart-drawer__footer {
-  background: var(--izamarck-darker) !important;
-  border-color: rgba(255,255,255,0.08) !important;
-}
-
-.cart-drawer__title,
-.cart-item__name {
-  color: var(--izamarck-white) !important;
-}
-
-.cart-item__price,
-.cart-item__regular-price {
-  color: var(--izamarck-gold) !important;
-}
-
-/* Checkout button */
-.cart-drawer__checkout-btn,
-.button--checkout {
-  background: var(--izamarck-gold) !important;
-  color: var(--izamarck-black) !important;
-  border: none !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.1em !important;
-}
-
-.cart-drawer__checkout-btn:hover,
-.button--checkout:hover {
-  background: var(--izamarck-gold-hover) !important;
-}
+/* Cart drawer styles moved to izamarck-cart.css */
 
 /* ============================================================
    GLOBAL BUTTON OVERRIDES
@@ -1282,45 +1228,7 @@ header-component,
   font-size: 12px !important;
 }
 
-/* ============================================================
-   PREDICTIVE SEARCH / SEARCH MODAL
-   ============================================================ */
-.search-modal {
-  background: rgba(0,0,0,0.95) !important;
-}
-
-.search-modal__content {
-  background: #111111 !important;
-}
-
-.search-modal__form .field__input {
-  background: rgba(255,255,255,0.06) !important;
-  border-color: rgba(255,255,255,0.15) !important;
-  color: #ffffff !important;
-  border-radius: 0 !important;
-  font-size: 18px !important;
-  letter-spacing: 0.02em !important;
-}
-
-.search-modal__form .field__input::placeholder {
-  color: rgba(255,255,255,0.3) !important;
-}
-
-.search-modal .predictive-search__result-group-heading {
-  color: rgba(255,255,255,0.4) !important;
-  font-size: 10px !important;
-  letter-spacing: 0.2em !important;
-  text-transform: uppercase !important;
-  font-weight: 700 !important;
-}
-
-.predictive-search__item-heading {
-  color: #ffffff !important;
-}
-
-.predictive-search__item .price {
-  color: #D4A843 !important;
-}
+/* Search modal styles moved to izamarck-search.css */
 
 /* ============================================================
    MEGA MENU LINK TYPOGRAPHY

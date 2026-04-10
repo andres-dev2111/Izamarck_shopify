@@ -1,0 +1,20 @@
+# IZAMARCK Shopify Theme — GitHub Actions
+# This disables the default Jekyll Pages build (not needed for Shopify themes)
+# To deploy: upload the theme zip to Shopify Admin > Online Store > Themes
+
+name: Shopify Theme
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # Intentionally empty — Shopify themes are deployed via Shopify Admin or Shopify CLI
+  # GitHub Pages (Jekyll) is NOT used for Shopify themes
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Theme ready
+        run: echo "✓ IZAMARCK theme files updated. Deploy via Shopify Admin."
